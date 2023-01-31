@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('idEmpresa')->nullable()->constrained('empresas')->references('id');
             $table->longText('descripcio');
-            $table->foreignId('idCicle')->nullable()->constrained('estudis')->references('id');
+            $table->foreignId('idEstudi')->nullable()->constrained('estudis')->references('id');
             $table->integer('numVacants');
             $table->string('curs');
             $table->string('nomContacte');

@@ -13,7 +13,7 @@ class Empresas extends Model
     protected $fillable = ['id','nom','adreça','telefon','correu'];
 
     public function alumne(){
-        return $this->belongsTo(Alumnes::class);
+        return $this->hasMany(Alumnes::class);
     }
 
     public function ofertas(){

@@ -10,9 +10,12 @@ class Alumnes extends Model
     use HasFactory;
     protected $table = "alumnes";
     protected $primaryKey = "id";
-    protected $fillable = ["id", "nom", "cognoms", "dni", "curs", "cicle", "telefon", "correu", "practiques", "cv"];
-    public function tutorEmpresa(){
-        return $this->hasOne(Empresas::class);
+    protected $fillable = ["id", "nom", "cognoms", "dni", "curs", "telefon", "correu", "practiques", "cv"];
+    public function empresa(){
+        return $this->belongsTo(Empresas::class);
+    }
+    public function estudis(){
+        return $this->belongsTo(Estudis::class);
     }
     public function ofertas(){
         return $this->belongsToMany(Ofertas::class, 'enviaments');

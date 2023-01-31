@@ -10,5 +10,5 @@ class Enviaments extends Model
     use HasFactory;
     protected $table = "enviaments";
     protected $primaryKey = "id";
-    protected $fillable = ["id", "observacions", "estatEnviaments"];
+    protected $fillable = ["id", "alumne_id", "oferta_id", "observacions", "estatEnviaments"];
 }

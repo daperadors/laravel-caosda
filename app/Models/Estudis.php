@@ -15,6 +15,9 @@ class Estudis extends Model
     public function ofertas(){
         return $this->hasMany(Ofertas::class);
     }
+    public function alumnes(){
+        return $this->hasMany(Alumnes::class);
+    }
 
 
 }

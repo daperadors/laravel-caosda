@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('cognoms', 50);
             $table->string('dni', 9);
             $table->string('curs');
-            $table->string('cicle');
             $table->bigInteger('telefon');
             $table->string('correu');
-            $table->foreignId('idTutorEmpresa')->nullable()->constrained('empresas')->references('id');
+            $table->foreignId('idEmpresa')->nullable()->constrained('empresas')->references('id');
+            $table->foreignId('idEstudi')->nullable()->constrained('estudis')->references('id');
             $table->boolean('practiques');
             $table->string('cv');
             $table->timestamps();
@@ -37,8 +37,10 @@ return new class extends Migration
     public function down()
     {
         Schema::table('alumnes', function(Blueprint $table){
-            $table->dropForeign(["alumnes_idTutorEmpresa_foreign"]);
-            $table->dropColumn("idTutorEmpresa");
+            $table->dropForeign(["alumnes_idEmpresa_foreign"]);
+            $table->dropColumn("idEmpresa");
+            $table->dropForeign(["alumnes_idEstudi_foreign"]);
+            $table->dropColumn("idEstudi");
         });
         Schema::dropIfExists('alumnes');
     }
