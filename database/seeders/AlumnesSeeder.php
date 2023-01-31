@@ -17,7 +17,7 @@ class AlumnesSeeder extends Seeder
     {
         DB::table('alumnes')->insert([
             'nom'=>'Carlos',
-            'cognomns'=> 'Alises Mora',
+            'cognoms'=> 'Alises Mora',
             'dni'=> '46321260Q',
             'curs' => '2022-2023',
             'telefon' => 674561243,
@@ -29,7 +29,7 @@ class AlumnesSeeder extends Seeder
         ]);
         DB::table('alumnes')->insert([
             'nom'=>'David',
-            'cognomns'=> 'Aperador Salcedo',
+            'cognoms'=> 'Aperador Salcedo',
             'dni'=> '56121268P',
             'curs' => '2022-2023',
             'telefon' => 672563241,
@@ -41,7 +41,7 @@ class AlumnesSeeder extends Seeder
         ]);
         DB::table('alumnes')->insert([
             'nom'=>'Oscar',
-            'cognomns'=> 'Troya Castilla',
+            'cognoms'=> 'Troya Castilla',
             'dni'=> '49151267B',
             'curs' => '2022-2023',
             'telefon' => 677761221,

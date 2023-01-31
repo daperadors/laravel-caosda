@@ -22,16 +22,16 @@ class EmpresaSeeder extends Seeder
             'correu' => 'socialgames@gmail.com'
         ]);
         DB::table('empresas')->insert([
-            'nom' => 'Adherit',
+            'nom' => 'Adderit',
             'adreça' => 'C/Barcelona N3',
             'telefon' => 674592315,
-            'correu' => 'adherit@gmail.com'
+            'correu' => 'adderit@gmail.com'
         ]);
         DB::table('empresas')->insert([
             'nom' => 'Gurth',
             'adreça' => 'C/Evans N14',
             'telefon' => 674587313,
-            'correu' => 'adherit@gmail.com'
+            'correu' => 'gurth@gmail.com'
         ]);
     }
 }

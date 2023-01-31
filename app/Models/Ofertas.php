@@ -17,7 +17,7 @@ class Ofertas extends Model
     }
 
     public function estudi() {
-        return $this->belongsTo(Empresas::class, 'idCicle', 'id');
+        return $this->belongsTo(Estudis::class, 'idEstudi', 'id');
     }
 
     public function alumnos() {

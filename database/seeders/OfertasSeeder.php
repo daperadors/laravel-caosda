@@ -13,12 +13,13 @@ class OfertasSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         DB::table('ofertas') ->insert([
-           'idEmpresa'=> 2,
+            'idEmpresa'=> 2,
             'descripcio'=> 'FrontEnd Unity',
-            'idCicle'=> 1,
+            'idEstudi'=> 1,
             'numVacants'=> 1,
             'curs'=> '2022-2023',
             'nomContacte' => 'Miquel',
@@ -28,7 +29,7 @@ class OfertasSeeder extends Seeder
         DB::table('ofertas') ->insert([
             'idEmpresa'=> 1,
             'descripcio'=> 'Javascript Developer',
-            'idCicle'=> 3,
+            'idEstudi'=> 3,
             'numVacants'=> 2,
             'curs'=> '2022-2023',
             'nomContacte' => 'Juan',
@@ -37,8 +38,8 @@ class OfertasSeeder extends Seeder
         ]);
         DB::table('ofertas') ->insert([
             'idEmpresa'=> 3,
-            'descripcio'=> 'Backend Larabel',
-            'idCicle'=> 2,
+            'descripcio'=> 'Backend Laravel',
+            'idEstudi'=> 2,
             'numVacants'=> 3,
             'curs'=> '2022-2023',
             'nomContacte' => 'Susana',

@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('ofertas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('idEmpresa')->nullable()->constrained('empresas')->references('id');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('correuContacte', 80);
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -37,8 +39,8 @@ return new class extends Migration
         Schema::table('ofertas', function (Blueprint $table) {
             $table->dropForeign(['ofertas_idEmpresa_foreign']);
             $table->dropColumn('idEmpresa');
-            $table->dropForeign(['ofertas_idCicle_foreign']);
-            $table->dropColumn('idCicle');
+            $table->dropForeign(['ofertas_idEstudi_foreign']);
+            $table->dropColumn('idEstudi');
         });
         Schema::dropIfExists('ofertas');
     }

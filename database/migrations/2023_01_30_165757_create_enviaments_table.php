@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('enviaments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('alumne_id')->references('id')->on('alumnes')->onDelete('cascade');
-            $table->foreign('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');
+            $table->foreignId('alumne_id')->nullable()->constrained('alumnes')->references('id');
+            $table->foreignId('oferta_id')->nullable()->constrained('ofertas')->references('id');
+            /*$table->foreignId('alumne_id')->references('id')->on('alumnes')->onDelete('cascade');
+            $table->foreignId('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');*/
             $table->longText('observacions');
             $table->string('estatEnviaments', 50);
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

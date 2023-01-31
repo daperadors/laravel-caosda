@@ -18,7 +18,7 @@ class Alumnes extends Model
         return $this->belongsTo(Estudis::class);
     }
     public function ofertas(){
-        return $this->belongsToMany(Ofertas::class, 'enviaments');
+        return $this->belongsToMany(Ofertas::class, 'enviaments', 'alumne_id', 'oferta_id');
     }
 
 }
