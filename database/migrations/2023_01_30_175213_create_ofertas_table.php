@@ -18,11 +18,11 @@ return new class extends Migration
             $table->foreignId('idEmpresa')->nullable()->constrained('empresas')->references('id');
             $table->longText('descripcio');
             $table->foreignId('idEstudi')->nullable()->constrained('estudis')->references('id');
-            $table->integer('numVacants');
-            $table->string('curs');
-            $table->string('nomContacte');
-            $table->string('cognomContacte');
-            $table->string('correuContacte');
+            $table->integer('numVacants', false);
+            $table->string('curs', 20);
+            $table->string('nomContacte', 50);
+            $table->string('cognomContacte', 50);
+            $table->string('correuContacte', 80);
             $table->timestamps();
         });
     }

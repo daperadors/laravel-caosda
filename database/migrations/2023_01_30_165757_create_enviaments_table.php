@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('alumne_id')->references('id')->on('alumnes')->onDelete('cascade');
             $table->foreign('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');
             $table->longText('observacions');
-            $table->string('estatEnviaments');
+            $table->string('estatEnviaments', 50);
         });
     }
 

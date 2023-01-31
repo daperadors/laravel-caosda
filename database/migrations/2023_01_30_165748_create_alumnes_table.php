@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('nom', 30);
             $table->string('cognoms', 50);
             $table->string('dni', 9);
-            $table->string('curs');
-            $table->bigInteger('telefon');
-            $table->string('correu');
+            $table->string('curs', 20);
+            $table->bigInteger('telefon', false);
+            $table->string('correu', 50);
             $table->foreignId('idEmpresa')->nullable()->constrained('empresas')->references('id');
             $table->foreignId('idEstudi')->nullable()->constrained('estudis')->references('id');
-            $table->boolean('practiques');
-            $table->string('cv');
+            $table->boolean('practiques')->default(false);
+            $table->string('cv', 255);
             $table->timestamps();
         });
     }
