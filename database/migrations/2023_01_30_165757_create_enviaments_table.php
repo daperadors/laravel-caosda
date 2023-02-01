@@ -18,8 +18,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('alumne_id')->nullable()->constrained('alumnes')->references('id');
             $table->foreignId('oferta_id')->nullable()->constrained('ofertas')->references('id');
-            /*$table->foreignId('alumne_id')->references('id')->on('alumnes')->onDelete('cascade');
-            $table->foreignId('oferta_id')->references('id')->on('ofertas')->onDelete('cascade');*/
             $table->longText('observacions');
             $table->string('estatEnviaments', 50);
         });

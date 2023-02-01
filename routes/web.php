@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InjectionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/getAllAlumnes',[InjectionController::class,'getAllAlumnes']);
+Route::get('/getAllEnviaments',[InjectionController::class,'getAllEnviaments']);
+Route::get('/getAllEstudis',[InjectionController::class,'getAllEstudis']);
+Route::get('/getAllEmpresas',[InjectionController::class,'getAllEmpresas']);
+Route::get('/getAllOfertas',[InjectionController::class,'getAllOfertas']);
+Route::get('/getAllUsers',[InjectionController::class,'getAllUsers']);
