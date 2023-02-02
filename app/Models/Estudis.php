@@ -18,6 +18,8 @@ class Estudis extends Model
     public function alumnes(){
         return $this->hasMany(Alumnes::class);
     }
-
+    public function user(){
+        return $this->hasOne(User::class);
+    }
 
 }

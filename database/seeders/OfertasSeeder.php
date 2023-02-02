@@ -34,7 +34,7 @@ class OfertasSeeder extends Seeder
             'curs'=> '2022-2023',
             'nomContacte' => 'Juan',
             'cognomContacte' => 'Fernandez',
-            'correuContacte' => 'oferta@gmail.com'
+            'correuContacte' => 'oferta2@gmail.com'
         ]);
         DB::table('ofertas') ->insert([
             'idEmpresa'=> 3,
@@ -44,7 +44,7 @@ class OfertasSeeder extends Seeder
             'curs'=> '2022-2023',
             'nomContacte' => 'Susana',
             'cognomContacte' => 'Lopez',
-            'correuContacte' => 'oferta@gmail.com'
+            'correuContacte' => 'oferta3@gmail.com'
         ]);
     }
 }

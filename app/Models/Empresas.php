@@ -12,9 +12,6 @@ class Empresas extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['id','nom','adreça','telefon','correu'];
 
-    public function alumne(){
-        return $this->hasMany(Alumnes::class);
-    }
 
     public function ofertas(){
         return $this->hasMany(Ofertas::class);

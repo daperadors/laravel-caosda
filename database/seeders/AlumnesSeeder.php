@@ -23,7 +23,7 @@ class AlumnesSeeder extends Seeder
             'telefon' => 674561243,
             'correu' => 'calisesm@gmail.com',
             'idEstudi' => 1,
-            'idEmpresa' => 2,
+            //'idTutor' => 2,
             'practiques' => true,
             'cv' => '#CV.pdf'
         ]);
@@ -35,7 +35,7 @@ class AlumnesSeeder extends Seeder
             'telefon' => 672563241,
             'correu' => 'daperadors@gmail.com',
             'idEstudi' => 2,
-            'idEmpresa' => 1,
+            //'idTutor' => 1,
             'practiques' => true,
             'cv' => '#CV.pdf'
         ]);
@@ -47,7 +47,7 @@ class AlumnesSeeder extends Seeder
             'telefon' => 677761221,
             'correu' => 'otroya@gmail.com',
             'idEstudi' => 1,
-            'idEmpresa' => 2,
+            //'idTutor' => 2,
             'practiques' => true,
             'cv' => '#CV.pdf'
         ]);

@@ -24,5 +24,8 @@ class EstudisSeeder extends Seeder
         DB::table('estudis')->insert([
             'nom' => 'ASIX'
         ]);
+        DB::table('estudis')->insert([
+            'nom' => 'DAM'
+        ]);
     }
 }
