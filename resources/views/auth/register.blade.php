@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Register') }} - CaOsDa</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -60,7 +60,24 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+                        <div class="row mb-3">
+                            <label for="group" class="col-md-4 col-form-label text-md-end">{{ __('Group') }}</label>
+                            <div class="col-md-6 d-flex">
+                                <select id="group" class="form-select" aria-label="Select your group" required>
+                                    <option selected>Select your group</option>
+                                    <option value="2">SMX</option>
+                                    <option value="3">ASIX</option>
+                                    <option value="4">DAM</option>
+                                    <option value="1">DAM-VI</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="coordinator" class="col-md-4 col-form-label text-md-end">{{ __('Coordinator') }}</label>
+                            <div class="col-md-6 d-flex">
+                                <input id="coordinator" type="checkbox" name="coordinator" required>
+                            </div>
+                        </div><!---->
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

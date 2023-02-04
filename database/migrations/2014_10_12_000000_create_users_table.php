@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('email', 70)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('coordinador')->default(false);
-            $table->foreignId('grup_id')->nullable()->constrained('estudis')->references('id');
+            $table->boolean('coordinator')->default(false);
+            $table->foreignId('group')->nullable()->constrained('estudis')->references('id');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -36,8 +36,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->dropForeign(["users_grup_id_foreign"]);
-            $table->dropColumn("grup_id");
+            $table->dropForeign(["users_group_foreign"]);
+            $table->dropColumn("group");
         });
         Schema::dropIfExists('users');
     }
