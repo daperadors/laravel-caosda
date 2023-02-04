@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,8 @@ class AlumnesSeeder extends Seeder
             'idEstudi' => 1,
             //'idTutor' => 2,
             'practiques' => true,
-            'cv' => '#CV.pdf'
+            'cv' => '#CV.pdf',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('alumnes')->insert([
             'nom'=>'David',
@@ -37,7 +39,8 @@ class AlumnesSeeder extends Seeder
             'idEstudi' => 2,
             //'idTutor' => 1,
             'practiques' => true,
-            'cv' => '#CV.pdf'
+            'cv' => '#CV.pdf',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('alumnes')->insert([
             'nom'=>'Oscar',
@@ -49,7 +52,8 @@ class AlumnesSeeder extends Seeder
             'idEstudi' => 1,
             //'idTutor' => 2,
             'practiques' => true,
-            'cv' => '#CV.pdf'
+            'cv' => '#CV.pdf',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }

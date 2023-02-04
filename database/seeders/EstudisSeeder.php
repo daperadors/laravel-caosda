@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,16 +17,20 @@ class EstudisSeeder extends Seeder
     public function run()
     {
         DB::table('estudis')->insert([
-           'nom' => 'DAMVI'
+           'nom' => 'DAMVI',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('estudis')->insert([
-            'nom' => 'SMX'
+            'nom' => 'SMX',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('estudis')->insert([
-            'nom' => 'ASIX'
+            'nom' => 'ASIX',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('estudis')->insert([
-            'nom' => 'DAM'
+            'nom' => 'DAM',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }

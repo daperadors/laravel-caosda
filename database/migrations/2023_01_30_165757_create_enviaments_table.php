@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('oferta_id')->nullable()->constrained('ofertas')->references('id');
             $table->longText('observacions');
             $table->string('estatEnviaments', 50);
+            $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
     }

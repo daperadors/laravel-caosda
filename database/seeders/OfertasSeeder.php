@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,8 @@ class OfertasSeeder extends Seeder
             'curs'=> '2022-2023',
             'nomContacte' => 'Miquel',
             'cognomContacte' => 'Sitges',
-            'correuContacte' => 'oferta@gmail.com'
+            'correuContacte' => 'oferta@gmail.com',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('ofertas') ->insert([
             'idEmpresa'=> 1,
@@ -34,7 +36,8 @@ class OfertasSeeder extends Seeder
             'curs'=> '2022-2023',
             'nomContacte' => 'Juan',
             'cognomContacte' => 'Fernandez',
-            'correuContacte' => 'oferta2@gmail.com'
+            'correuContacte' => 'oferta2@gmail.com',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('ofertas') ->insert([
             'idEmpresa'=> 3,
@@ -44,7 +47,8 @@ class OfertasSeeder extends Seeder
             'curs'=> '2022-2023',
             'nomContacte' => 'Susana',
             'cognomContacte' => 'Lopez',
-            'correuContacte' => 'oferta3@gmail.com'
+            'correuContacte' => 'oferta3@gmail.com',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }

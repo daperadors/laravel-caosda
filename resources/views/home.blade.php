@@ -17,11 +17,11 @@
                     {{ __('You are logged in!') }}
                     <div class="mt-4 mb-4" id="linksUsers">
                         <h2 class="mb-3">/getAll</h2>
-                        <a href="/getAllUsers" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none">Usuaris</a>
-                        <a href="/getAllAlumnes" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none">Alumnes</a>
-                        <a href="/getAllEmpresas" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none">Empresas</a>
-                        <a href="/getAllEstudis" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none">Estudis</a>
-                        <a href="/getAllEnviaments" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none">Enviamentes</a>
+                        <a href="/getAllUsers" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Usuaris</a>
+                        <a href="/getAllAlumnes" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Alumnes</a>
+                        <a href="/getAllEmpresas" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Empresas</a>
+                        <a href="/getAllEstudis" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Estudis</a>
+                        <a href="/getAllEnviaments" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Enviamentes</a>
                     </div>
                     <iframe name="routes" src="" width="100%" height="100%"></iframe>
                 </div>
