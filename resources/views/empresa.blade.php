@@ -5,25 +5,25 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <!--Enviaments-->
-            <h1>Open shipments</h1>
+            <h1>Enterprises</h1>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Alumn</th>
-                    <th scope="col">Offers</th>
-                    <th scope="col">Observations</th>
-                    <th scope="col">Shipping status</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Mobile phone</th>
+                    <th scope="col">E-mail</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($shipments as $ship)
+                    @foreach($enterprises as $enterprise)
                 <tr>
-                    <th scope="row">{{$ship->id}}</th>
-                    <td>{{$ship->alumne_id}}</td>
-                    <td>{{$ship->oferta_id}}</td>
-                    <td>{{$ship->observacions}}</td>
-                    <td>{{$ship->estatEnviaments}}</td>
+                    <th scope="row">{{$enterprise->id}}</th>
+                    <td>{{$enterprise->nom}}</td>
+                    <td>{{$enterprise->adreça}}</td>
+                    <td>{{$enterprise->telefon}}</td>
+                    <td>{{$enterprise->correu}}</td>
                 </tr>
                     @endforeach
                 </tbody>

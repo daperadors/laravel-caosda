@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/empresa', [App\Http\Controllers\EmpresaController::class, 'index'])->name('empresa');
 
 Route::get('/getAllAlumnes',[InjectionController::class,'getAllAlumnes']);
 Route::get('/getAllEnviaments',[InjectionController::class,'getAllEnviaments']);

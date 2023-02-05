@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enviaments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function getEnviaments(){
+        $shipments = DB::table('enviaments')->get();
+        return view('home', compact('shipments'));
+        /*$ship = Auth::user();
+        $shipments = Enviaments::all();
+        return view('home', compact('ship', $ship, 'shipments'));*/
+    }
     /**
      * Create a new controller instance.
      *
@@ -23,6 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $shipments = Enviaments::all();
+        return view('home', compact('shipments'));
     }
 }

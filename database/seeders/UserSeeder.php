@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users') ->insert([
             'name'=> 'david',
-            'email'=> 'david@caosda.es',
+            'email'=> 'david@carpediem.net',
             'email_verified_at'=> null,
             'password'=> '123456789',
             'coordinador'=> true,
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users') ->insert([
             'name'=> 'carlos',
-            'email'=> 'carlos@caosda.es',
+            'email'=> 'carlos@carpediem.net',
             'email_verified_at'=> null,
             'password'=> '123456789',
             'coordinador'=> false,
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users') ->insert([
             'name'=> 'oscar',
-            'email'=> 'oscar@caosda.es',
+            'email'=> 'oscar@carpediem.net',
             'email_verified_at'=> null,
             'password'=> '123456789',
             'coordinador'=> false,
