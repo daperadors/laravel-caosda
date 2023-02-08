@@ -5,50 +5,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <!--Enviaments-->
-            <h1>Open shipments</h1>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Alumn</th>
-                    <th scope="col">Offers</th>
-                    <th scope="col">Observations</th>
-                    <th scope="col">Shipping status</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($shipments as $ship)
-                <tr>
-                    <th scope="row">{{$ship->id}}</th>
-                    <td>{{$ship->alumne_id}}</td>
-                    <td>{{$ship->oferta_id}}</td>
-                    <td>{{$ship->observacions}}</td>
-                    <td>{{$ship->estatEnviaments}}</td>
-                </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <!--<div class="card">
-                <div class="card-header">CaOsDa - {{ __('Dashboard') }}</div>
-
-                <div class="card-body d-flex flex-column">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                    <div class="mt-4 mb-4" id="linksUsers">
-                        <h2 class="mb-3">/getAll</h2>
-                        <a href="/getAllUsers" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Usuaris</a>
-                        <a href="/getAllAlumnes" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Alumnes</a>
-                        <a href="/getAllEmpresas" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Empresas</a>
-                        <a href="/getAllEstudis" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Estudis</a>
-                        <a href="/getAllEnviaments" target="routes" class="text-black p-2 bg-secondary rounded shadow text-white" style="text-decoration: none; user-select: none">Enviamentes</a>
-                    </div>
-                    <iframe name="routes" src="" width="100%" height="100%"></iframe>
-                </div>-->
+            <div class="card">
+                <div class="card-header">{{ __('Open Shipments') }} - CaOsDa</div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Alumn</th>
+                        <th scope="col">Offers</th>
+                        <th scope="col">Observations</th>
+                        <th scope="col">Shipping status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($shipments as $ship)
+                    <tr>
+                        <td>{{$ship->alumne}}</td>
+                        <td>{{$ship->oferta}}</td>
+                        <td>{{$ship->observacions}}</td>
+                        <td>{{$ship->estatEnviaments}}</td>
+                        <td title="Edit shipment {{$ship->id}}"><i class="fa-solid fa-pen-to-square"></i></td>
+                        <td title="Delete shipment {{$ship->id}}"><i class="fa-solid fa-trash"></i></td>
+                    </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             </div>
         </div>
     </div>

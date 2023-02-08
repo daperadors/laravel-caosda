@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumnes;
 use App\Models\Enviaments;
+use App\Models\Ofertas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function getEnviaments(){
-        $shipments = DB::table('enviaments')->get();
-        return view('home', compact('shipments'));
-        /*$ship = Auth::user();
-        $shipments = Enviaments::all();
-        return view('home', compact('ship', $ship, 'shipments'));*/
-    }
     /**
      * Create a new controller instance.
      *
@@ -33,7 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $shipments = Enviaments::all();
+        $alumns = Alumnes::where('id' ,'>' ,0)->pluck('id')->all();
+        $shipments = Enviaments::addSelect(['alumne' => Alumnes::select('nom') -> whereColumn('id', 'enviaments.alumne_id')])
+                                ->addSelect(['oferta' => Ofertas::select('descripcio') -> whereColumn('id', 'enviaments.oferta_id')])
+                                ->whereIn('alumne_id', $alumns)->get();
+
         return view('home', compact('shipments'));
     }
 }
