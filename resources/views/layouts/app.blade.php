@@ -14,7 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/bootstrap.js'])
 </head>
 <body>
     <div id="app">
@@ -31,7 +31,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" >Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" >Alumnes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('empresa') }}">Empresas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('oferta') }}">Ofertes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" >Estudis</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
