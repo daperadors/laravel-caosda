@@ -20,6 +20,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                         @foreach($offers as $offer)
                     <tr>
                         <td>{{$offer->empresa}}</td>

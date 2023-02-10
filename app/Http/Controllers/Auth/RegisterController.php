@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/(.*)@carpediem\.net$/i'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'grp' => ['required']
         ]);
     }
 
@@ -65,9 +68,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name'=> $data['name'],
+            'email'=> $data['email'],
+            'password'=> Hash::make($data['password']),
+            'coordinator'=> array_key_exists('coord', $data) ? 1 : 0,
+            'group' => intval($data['grp']),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }

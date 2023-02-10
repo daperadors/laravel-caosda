@@ -36,6 +36,7 @@
     </div>
 </div>
 
+
 <!--{{$shipments->links()}}-->
 
 @endsection

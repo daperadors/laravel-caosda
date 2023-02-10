@@ -63,8 +63,8 @@
                         <div class="row mb-3">
                             <label for="group" class="col-md-4 col-form-label text-md-end">{{ __('Group') }}</label>
                             <div class="col-md-6 d-flex">
-                                <select id="group" class="form-select" aria-label="Select your group" required>
-                                    <option selected>Select your group</option>
+                                <select id="group" name="grp" class="form-select" aria-label="Select your group" required>
+                                    <option selected disabled>Select your group</option>
                                     <option value="2">SMX</option>
                                     <option value="3">ASIX</option>
                                     <option value="4">DAM</option>
@@ -75,7 +75,7 @@
                         <div class="row mb-3">
                             <label for="coordinator" class="col-md-4 col-form-label text-md-end">{{ __('Coordinator') }}</label>
                             <div class="col-md-6 d-flex">
-                                <input id="coordinator" type="checkbox" name="coordinator" required>
+                                <input name="coord" id="coordinator" type="checkbox">
                             </div>
                         </div><!---->
                         <div class="row mb-0">

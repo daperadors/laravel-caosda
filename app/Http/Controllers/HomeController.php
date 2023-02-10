@@ -31,7 +31,7 @@ class HomeController extends Controller
         $alumns = Alumnes::where('id' ,'>' ,0)->pluck('id')->all();
         $shipments = Enviaments::addSelect(['alumne' => Alumnes::select('nom') -> whereColumn('id', 'enviaments.alumne_id')])
                                 ->addSelect(['oferta' => Ofertas::select('descripcio') -> whereColumn('id', 'enviaments.oferta_id')])
-                                ->whereIn('alumne_id', $alumns)->paginate(5);
+                                ->whereIn('alumne_id', $alumns)->where('estatEnviaments', '!=', 'Finalitzat i Contractat')->paginate(5);
 
         return view('home', compact('shipments'));
     }

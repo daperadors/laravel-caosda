@@ -21,8 +21,8 @@ class UserSeeder extends Seeder
             'email'=> 'david@carpediem.net',
             'email_verified_at'=> null,
             'password'=> '123456789',
-            'coordinador'=> true,
-            'grup_id' => 1,
+            'coordinator'=> true,
+            'group' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('users') ->insert([
@@ -30,8 +30,8 @@ class UserSeeder extends Seeder
             'email'=> 'carlos@carpediem.net',
             'email_verified_at'=> null,
             'password'=> '123456789',
-            'coordinador'=> false,
-            'grup_id' => 2,
+            'coordinator'=> false,
+            'group' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('users') ->insert([
@@ -39,8 +39,8 @@ class UserSeeder extends Seeder
             'email'=> 'oscar@carpediem.net',
             'email_verified_at'=> null,
             'password'=> '123456789',
-            'coordinador'=> false,
-            'grup_id' => 3,
+            'coordinator'=> false,
+            'group' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
