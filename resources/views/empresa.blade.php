@@ -13,6 +13,9 @@
                         <th scope="col">Address</th>
                         <th scope="col">Mobile phone</th>
                         <th scope="col">E-mail</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+
                     </tr>
                     </thead>
                     <tbody>
