@@ -25,7 +25,7 @@
                         <td>{{$enterprise->adreça}}</td>
                         <td>{{$enterprise->telefon}}</td>
                         <td>{{$enterprise->correu}}</td>
-                        <td title="Edit shipment {{$enterprise->id}}" data-table="{{$enterprise}}" data-toggle="modal" data-target="#editCompany" id="btnEdit" class="editBtn"><i class="fa-solid fa-pen-to-square"></i></td>
+                        <td title="Edit shipment {{$enterprise->id}}" data-table="{{$enterprise}}" data-toggle="modal" data-target="#editCompany" id="btnEdit" class="editEmpresaBtn"><i class="fa-solid fa-pen-to-square"></i></td>
                         <td title="Delete shipment {{$enterprise->id}}" data-id="{{$enterprise->id}}" data-toggle="modal" data-target="#alertDeleteCompany" class="deleteBtn"><i class="fa-solid fa-trash"></i></td>
                     </tr>
                         @endforeach
@@ -60,28 +60,28 @@
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control" name="name">
+                            <input id="name" type="text" class="form-control border-0 shadow" name="name">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="email" class="col-md-4 col-form-label text-md-end">E-mail</label>
                         <div class="col-md-6">
-                            <input id="email" type="text" class="form-control" name="email">
+                            <input id="email" type="text" class="form-control border-0 shadow" name="email">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="address" class="col-md-4 col-form-label text-md-end">Address</label>
                         <div class="col-md-6">
-                            <input id="address" type="text" class="form-control" name="address">
+                            <input id="address" type="text" class="form-control border-0 shadow" name="address">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="mobile" class="col-md-4 col-form-label text-md-end">Mobile</label>
                         <div class="col-md-6">
-                            <input id="mobile" type="text" class="form-control" name="mobile">
+                            <input id="mobile" type="text" class="form-control border-0 shadow" name="mobile">
                         </div>
                     </div>
 
@@ -101,7 +101,7 @@
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editTitle">Create a new company</h5>
+                <h5 class="modal-title" id="editTitle">Create new company</h5>
                 <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
                 </button>
@@ -143,7 +143,6 @@
             </div>
         </div>
     </form>
-</div>
 </div>
 
 <!-- Alert delete -->

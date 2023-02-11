@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumnes;
+use App\Models\Estudis;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlumnesController extends Controller
 {
@@ -38,5 +42,19 @@ class AlumnesController extends Controller
         } else {
             return 'Alumne not found';
         }
+    }
+    public function index(){
+        $groupsInfo = Estudis::all();
+        if(Auth::user()->coordinator === 1){
+            $groups = Estudis::where('id' ,'>' ,0)->pluck('id')->toArray();
+            $students= Alumnes::addSelect(['groupname' => Estudis::select('nom') -> whereColumn('id', 'alumnes.idEstudi')])
+                ->whereIn('idEstudi', $groups)->paginate(5);
+            return view('students', compact('students', 'groupsInfo'));
+        }
+
+        $groups = Estudis::where('id' ,'=' ,Auth::user()->group)->pluck('id')->toArray();
+        $students= Alumnes::addSelect(['groupname' => Estudis::select('nom') -> whereColumn('id', 'alumnes.idEstudi')])
+            ->whereIn('idEstudi', $groups)->paginate(5);
+        return view('students', compact('students', 'groupsInfo'));
     }
 }

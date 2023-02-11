@@ -14,11 +14,12 @@ class OfertaController extends Controller
 {
     public function index()
     {
+        $studentsInfo = Alumnes::all();
         $enterprises = Empresas::where('id' ,'>' ,0)->pluck('id')->all();
         $offers = Ofertas::addSelect(['empresa' => Empresas::select('nom') -> whereColumn('id', 'ofertas.idEmpresa')])
             ->addSelect(['estudi' => Estudis::select('nom') -> whereColumn('id', 'ofertas.idEstudi')])
             ->whereIn('idEmpresa', $enterprises)->paginate(5);
-        return view('ofertas', compact('offers'));
+        return view('ofertas', compact('offers', 'studentsInfo'));
     }
     public function addOferta($descripcio, $numVacants, $curs, $nomContacte, $cognomContacte, $correuContacte){
         $data = [
