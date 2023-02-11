@@ -8,6 +8,7 @@ use App\Models\Ofertas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function MongoDB\BSON\toJSON;
 
 class HomeController extends Controller
 {
@@ -32,7 +33,6 @@ class HomeController extends Controller
         $shipments = Enviaments::addSelect(['alumne' => Alumnes::select('nom') -> whereColumn('id', 'enviaments.alumne_id')])
                                 ->addSelect(['oferta' => Ofertas::select('descripcio') -> whereColumn('id', 'enviaments.oferta_id')])
                                 ->whereIn('alumne_id', $alumns)->where('estatEnviaments', '!=', 'Finalitzat i Contractat')->paginate(5);
-
-        return view('home', compact('shipments'));
+        return view('home', compact('shipments', 'alumns'));
     }
 }

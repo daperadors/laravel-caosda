@@ -77,12 +77,12 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="coordinator" class="col-md-4 col-form-label text-md-end">{{ __('Coordinator') }}</label>
-                            <div class="col-md-6 d-flex">
-                                <input name="coord" id="coordinator" type="checkbox">
+                        <div class="row mb-3 d-flex align-items-center">
+                            <label for="coordinator" class="form-check-label col-md-4 col-form-label text-md-end">{{ __('Coordinator') }}</label>
+                            <div class="form-check form-switch mx-3 col-md-6">
+                                <input class="form-check-input px-4 pt-4" type="checkbox" id="coordinator" name="coord">
                             </div>
-                        </div><!---->
+                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-sm">
             <!--Enviaments-->
             <div class="card">
                 <div class="card-header">{{ __('Students') }} - CaOsDa</div>
@@ -34,9 +34,9 @@
                         <td>{{$student->telefon}}</td>
                         <td>{{$student->groupname}}</td>
                         <td>{{$student->practiques === 1 ? "Yes" : "No" }}</td>
-                        <form method="POST" action="/student/curriculum/download/{{$student->id}}" class="modal-dialog modal-dialog-centered" role="form" id="CV">
-                            <td title="Upload or view cv of {{$student->nom}}" data-id="{{$student->id}}"  class="donwloadCV" ><button type="submit" name="submit2" class="btn btn-dark">Create new student</button><i class="fa-solid fa-file-arrow-up"></i></td>
+                        <form method="POST" action="/students/curriculum/download/{{$student->id}}" class="modal-dialog modal-dialog-centered" role="form" id="CV">
                             @csrf
+                            <td title="Upload or view cv of {{$student->nom}}" data-id="{{$student->id}}"  class="downloadCV" ><button type="submit" name="submit2" class="btn btn-dark d-none downloadCvBtn">Create new student</button><i class="fa-solid fa-file-arrow-up"></i></td>
                         </form>
                         <td title="Edit user {{$student->nom}}" data-table="{{$student}}" data-toggle="modal" data-target="#editStudent" id="btnEdit" class="editStudentBtn"><i class="fa-solid fa-pen-to-square"></i></td>
                         <td title="Delete user {{$student->nom}}" data-id="{{$student->id}}" data-toggle="modal" data-target="#alertDeleteStudent" class="deleteStudentBtn"><i class="fa-solid fa-trash"></i></td>
@@ -52,43 +52,17 @@
                 {{ $students->links() }}
             </div>
             <button type="submit" title="Add new student" class="bg-dark text-white text- border-0 rounded w-100 mt-2 p-2" data-toggle="modal" data-target="#addStudent"><i class="fa-solid fa-plus"></i> Add new student</button>
-        </div>
-            </div>
+            @if($message = Session::get('error'))
+                <div class="alert alert-danger mt-2" id="alert">
+                    <strong>Error</strong> {{$message = Session::get('error')}}
+                </div>
+            @endif
         </div>
     </div>
 </div>
-
-<!-- Upload/View CV -->
-
-<div class="modal fade " id="edit_show_CV" tabindex="-1" role="dialog" aria-labelledby="edit_show_CV" aria-hidden="true">
-    <form method="POST" action="/student/update/CV/1" class="modal-dialog modal-dialog-centered" role="form" id="editShow_CV_Form">
-        @csrf
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editTitle">Your curriculum</h5>
-                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
-                </button>
-            </div>
-            <div id="nameUser" name="nameUser" class="d-none"></div>
-            <div class="modal-body">
-                <div class="row mb-3 d-flex justify-content-center">
-                    <button type="button" href="student/curriculum/download/1" class="btn btn-secondary w-50" id="donwloadCV">View actual curriculum</button>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </form>
-</div>
-</div>
-
-
 <!-- Add User -->
 <div class="modal fade modal-lg" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudent" aria-hidden="true">
-    <form method="POST" action="" class="modal-dialog modal-dialog-centered" role="form" id="addForm">
+    <form method="POST" action="" class="modal-dialog modal-dialog-centered" role="form" id="addForm" enctype="multipart/form-data">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
@@ -154,12 +128,17 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="mobile" class="col-md-4 col-form-label text-md-end">Curriculum</label>
+                    <label for="curriculumAdd" class="col-md-4 col-form-label text-md-end">Curriculum</label>
                     <div class="col-md-6">
-                        <input id="mobile" type="file" class="form-control" name="mobile" accept="application/pdf">
+                        <input id="curriculumAdd" type="file" class="form-control" name="curriculum" accept="application/pdf">
                     </div>
                 </div>
 
+                <div class="row mb-3 d-flex align-items-center">
+                    <label for="practiquesAddStudent" class="form-check-label col-md-4 col-form-label text-md-end">Practices</label>
+                    <div class="form-check form-switch mx-3 col-md-6">
+                        <input class="form-check-input px-4 pt-4" type="checkbox" id="practiquesAddStudent" name="practiques">                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -168,7 +147,7 @@
         </div>
     </form>
 </div>
-</div>
+
 
 <!--Delete User-->
 <div class="modal fade modal-sm" id="alertDeleteStudent" tabindex="-1" role="dialog" aria-labelledby="alertDeleteStudent" aria-hidden="true">
@@ -188,12 +167,12 @@
         </div>
     </form>
 </div>
-</div>
+
 
 
 <!-- Edit -->
 <div class="modal fade modal-lg" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="editStudent" aria-hidden="true">
-    <form method="POST" action="/student/update/1" class="modal-dialog modal-dialog-centered" role="form" id="editStudentForm">
+    <form method="POST" action="/student/update/1" class="modal-dialog modal-dialog-centered" role="form" id="editStudentForm" enctype="multipart/form-data">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
@@ -202,54 +181,73 @@
                     <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
                 </button>
             </div>
-            <div id="idStudent" name="idStudentEdit" class="d-none"></div>
+            <div id="idStudentEdit" name="idStudentEdit" class="d-none"></div>
             <div class="modal-body">
                 <div class="row mb-3">
-                    <label for="nameEditStudent" class="col-md-4 col-form-label text-md-end">Name</label>
+                    <label for="nameStudentEdit" class="col-md-4 col-form-label text-md-end">Name</label>
                     <div class="col-md-6">
-                        <input id="nameEditStudent" type="text" class="form-control border-0 shadow" name="name">
+                        <input id="nameStudentEdit" type="text" class="form-control border-0 shadow" name="nameEdit">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="surnamesEditStudent" class="col-md-4 col-form-label text-md-end">Surnames</label>
+                    <label for="surnamesStudentEdit" class="col-md-4 col-form-label text-md-end">Surname</label>
                     <div class="col-md-6">
-                        <input id="surnamesEditStudent" type="text" class="form-control border-0 shadow" name="surnames">
+                        <input id="surnamesStudentEdit" type="text" class="form-control border-0 shadow" name="surnamesEdit">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="dniEditStudent" class="col-md-4 col-form-label text-md-end">DNI</label>
+                    <label for="emailStudentEdit" class="col-md-4 col-form-label text-md-end">E-mail</label>
                     <div class="col-md-6">
-                        <input id="dniEditStudent" type="text" class="form-control border-0 shadow" name="dni">
+                        <input id="emailStudentEdit" type="text" class="form-control border-0 shadow" name="emailEdit">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="cursEditStudent" class="col-md-4 col-form-label text-md-end">Curs</label>
+                    <label for="dniStudentEdit" class="col-md-4 col-form-label text-md-end">DNI</label>
                     <div class="col-md-6">
-                        <input id="cursEditStudent" type="text" class="form-control border-0 shadow" name="curs">
+                        <input id="dniStudentEdit" type="text" class="form-control border-0 shadow" name="dniEdit">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="telefonEditStudent" class="col-md-4 col-form-label text-md-end">Telefon</label>
+                    <label for="cursStudentEdit" class="col-md-4 col-form-label text-md-end">Curs</label>
                     <div class="col-md-6">
-                        <input id="telefonEditStudent" type="number" class="form-control border-0 shadow" name="telefon">
+                        <input id="cursStudentEdit" type="text" class="form-control border-0 shadow" name="cursEdit">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="emailEditStudent" class="col-md-4 col-form-label text-md-end">E-mail</label>
+                    <label for="telefonStudentEdit" class="col-md-4 col-form-label text-md-end">Telefon</label>
                     <div class="col-md-6">
-                        <input id="emailEditStudent" type="text" class="form-control border-0 shadow" name="email">
+                        <input id="telefonStudentEdit" type="number" class="form-control border-0 shadow" name="telefonEdit">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="groupEdit" class="col-md-4 col-form-label text-md-end">Group</label>
+                    <div class="col-md-6">
+                        <select id="groupEdit" name="groupEdit" class="form-select" aria-label="Select your group">
+                            <option selected disabled>Select your group</option>
+                            @foreach($groupsInfo as $groupInfo)
+                                <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="curriculumEdit" class="col-md-4 col-form-label text-md-end">Curriculum</label>
+                    <div class="col-md-6">
+                        <input id="curriculumEdit" type="file" class="form-control" name="curriculumEdit" accept="application/pdf">
                     </div>
                 </div>
 
                 <div class="row mb-3 d-flex align-items-center">
-                    <label for="practiquesEditStudent" class="form-check-label col-md-4 col-form-label text-md-end">Practices</label>
-                    <div class="form-check form-switch col-md-6">
-                        <input class="form-check-input" type="checkbox" id="practiquesEditStudent" name="practiques">
+                    <label for="practiquesStudentEdit" class="form-check-label col-md-4 col-form-label text-md-end">Practices</label>
+                    <div class="form-check form-switch mx-3 col-md-6">
+                        <input class="form-check-input px-4 pt-4" type="checkbox" id="practiquesStudentEdit" name="practiquesEdit">
                     </div>
                 </div>
 
@@ -260,7 +258,6 @@
             </div>
         </div>
     </form>
-</div>
 </div>
 
 @endsection

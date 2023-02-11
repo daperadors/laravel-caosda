@@ -25,7 +25,7 @@ return new class extends Migration
             //$table->foreignId('idTutor')->nullable()->constrained('users')->references('id');
             $table->foreignId('idEstudi')->nullable()->constrained('estudis')->references('id');
             $table->boolean('practiques')->default(false);
-            $table->string('cv', 255);
+            $table->string('cv', 255)->nullable();
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();

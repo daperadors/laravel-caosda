@@ -21,6 +21,7 @@ class AlumnesController extends Controller
             'dni'=>$dni,
             'curs'=>$curs,
             'telefon'=>$telefon,
+            'idEstudi'=>$telefon,
             'correu'=>$correu,
             'practiques'=>$practiques,
             'cv'=>"cvExample"
@@ -30,19 +31,44 @@ class AlumnesController extends Controller
     }
     public function updateAlumnes(Request $request, $id){
 
+        if($request->curriculumEdit != null || $request->curriculumEdit != ""){
+        $fileName = time().'.'.$request->curriculumEdit->getClientOriginalExtension();
+        $request->curriculumEdit->move(public_path('uploads'), $fileName);
+        }
+
         $record = Alumnes::findOrFail($id);
 
-            $record->nom = $request -> name ;
-            $record->cognoms = $request -> surnames;
-            $record->dni = $request -> dni;
-            $record->curs = $request -> curs;
-            $record->telefon = intval($request -> telefon);
-            $record->correu =  $request -> email;
-            $record->practiques = $request -> practiques === "on" ? 1 : 0;
-            $record->save();
+        $record->nom = $request -> nameEdit;
+        $record->cognoms = $request -> surnamesEdit;
+        $record->dni = $request -> dniEdit;
+        $record->curs = $request -> cursEdit;
+        $record->telefon = intval($request -> telefonEdit);
+        $record->correu =  $request -> emailEdit;
+        $record->idEstudi =  intval($request -> groupEdit);
+        if($request -> curriculumEdit != null) $record->cv =  $fileName;
+        $record->practiques = $request -> practiquesEdit === "on" ? 1 : 0;
+        $record->save();
         return redirect()->back();
     }
 
+    public function addStudent(Request $request){
+        $fileName = time().'.'.$request->curriculumAdd->getClientOriginalExtension();
+        $request->curriculumAdd->move(public_path('uploads'), $fileName);
+
+        $data = [
+            'nom'=>$request->nameAdd,
+            'cognoms'=>$request->surnamesAdd,
+            'dni'=>$request->dniAdd,
+            'curs'=>$request->cursAdd,
+            'telefon'=>$request->telefonAdd,
+            'idEstudi'=>$request->nameAdd,
+            'correu'=>$request->emailAdd,
+            'practiques'=>$request -> practiquesAdd === "on" ? 1 : 0,
+            'cv'=>($request -> curriculumEdit != null)? $request->cv =  $fileName : ""
+        ];
+        Alumnes::create($data);
+        return "Alumno añadido correctamente";
+    }
     public function deleteAlumne($id){
         Schema::disableForeignKeyConstraints();
         $alumne = Alumnes::findOrFail($id);
@@ -60,15 +86,13 @@ class AlumnesController extends Controller
     }
 
     public function ViewCV($id) {
-        $cv = Alumnes::findOrFail($id);
-        $pathToFile = storage_path('app/public' . $cv -> cv);
-        //$file = ['cv' => $cv];
-        //file = public_path(). "/prueba.pdf";
-        //$file = public_path()."/prueba.pdf";
+        $student = Alumnes::findOrFail($id);
+        $pathToFile = public_path('uploads/'.$student -> cv);
         $header = array(
             'Content-Type: application/pdf',
         );
-        return response()->download($pathToFile, $cv -> cv, $header);
+        if($student -> cv==null || $student -> cv=="") return redirect()->back()->with('error', 'File not found.');
+        return response()->download($pathToFile, $student -> cv, $header);
         //return down
         //return Response::download($file);
     }

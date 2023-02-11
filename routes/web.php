@@ -25,10 +25,10 @@ Route::middleware(["auth"])->group(function (){
     Route::get('/empresa', [App\Http\Controllers\EmpresaController::class, 'index'])->name('empresa');
 
     //STUDENTS
-    Route::post('/student/delete/{id}',[\App\Http\Controllers\AlumnesController::class, 'deleteAlumne'])->name('deleteAlumne');
-    Route::post('/student/update/{id}',[\App\Http\Controllers\AlumnesController::class, 'updateAlumnes'])->name('updateAlumnes');
-    Route::post('/student/update/CV/{id}',[\App\Http\Controllers\AlumnesController::class, 'UdpdateCV'])->name('UdpdateCV');
-    Route::post('/student/curriculum/download/{id}',[\App\Http\Controllers\AlumnesController::class, 'ViewCV'])->name('ViewCV');
+    Route::post('/students/delete/{id}',[\App\Http\Controllers\AlumnesController::class, 'deleteAlumne'])->name('deleteAlumne');
+    Route::post('/students/update/{id}',[\App\Http\Controllers\AlumnesController::class, 'updateAlumnes'])->name('updateAlumnes');
+    Route::post('/students/update/CV/{id}',[\App\Http\Controllers\AlumnesController::class, 'UdpdateCV'])->name('UdpdateCV');
+    Route::post('/students/curriculum/download/{id}',[\App\Http\Controllers\AlumnesController::class, 'ViewCV'])->name('ViewCV');
 
     Route::get('/getAllAlumnes',[InjectionController::class,'getAllAlumnes']);
     Route::get('/getAllEnviaments',[InjectionController::class,'getAllEnviaments']);
