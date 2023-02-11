@@ -70,6 +70,11 @@
                                     <option value="4">DAM</option>
                                     <option value="1">DAM-VI</option>
                                 </select>
+                                @error('grp')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">

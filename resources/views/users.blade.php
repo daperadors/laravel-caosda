@@ -13,18 +13,12 @@
                             <th class="col-9">User</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
-                            <!--<th scope="col">E-mail</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Group</th>-->
                         </tr>
                         </thead>
                         <tbody>
                             @foreach($users as $user)
                         <tr>
                             <td>{{$user->name}}</td>
-                            <!--<td>{{$user->email}}</td>
-                            <td>{{$user->coordinator == 1 ? 'Coordinator FCTs/Dual' : "Practice tutor"}}</td>
-                            <td>{{$user->groupname}}</td>-->
                             <td title="Edit shipment {{$user->name}}" data-user="{{$user}}" data-toggle="modal" data-target="#viewUser" id="btnUser" class="viewUser"><i class="fa-solid fa-eye"></i></td>
                             <td title="Delete user {{$user->name}}"><i class="fa-solid fa-trash"></i></td>
                         </tr>
@@ -47,7 +41,7 @@
 
 <!-- User info -->
 <div class="modal fade modal-lg" id="viewUser" tabindex="-1" role="dialog" aria-labelledby="viewUser" aria-hidden="true">
-    <form method="POST" action="" class="modal-dialog modal-dialog-centered" role="form" id="editForm">
+    <form method="POST" action="" class="modal-dialog modal-dialog-centered" role="form" id="editUserForm">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
@@ -77,7 +71,7 @@
                          <div class="row mb-2 d-flex align-items-center">
                              <label for="coordinator" class="form-check-label col-md-4 col-form-label text-md-end">{{ __('Coordinator') }}</label>
                              <div class="form-check form-switch col-md-6">
-                                 <input class="form-check-input" type="checkbox" id="coordinator">
+                                 <input class="form-check-input" type="checkbox" id="coordinator" name="coordinator">
                              </div>
                          </div>
                          <div class="row mb-2">

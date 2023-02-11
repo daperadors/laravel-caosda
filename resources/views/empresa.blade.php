@@ -13,9 +13,10 @@
                         <th scope="col">Address</th>
                         <th scope="col">Mobile phone</th>
                         <th scope="col">E-mail</th>
+                        @if($coordinator)
                         <th scope="col"></th>
                         <th scope="col"></th>
-
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -25,8 +26,10 @@
                         <td>{{$enterprise->adreça}}</td>
                         <td>{{$enterprise->telefon}}</td>
                         <td>{{$enterprise->correu}}</td>
+                        @if($coordinator)
                         <td title="Edit shipment {{$enterprise->id}}" data-table="{{$enterprise}}" data-toggle="modal" data-target="#editCompany" id="btnEdit" class="editEmpresaBtn"><i class="fa-solid fa-pen-to-square"></i></td>
-                        <td title="Delete shipment {{$enterprise->id}}" data-id="{{$enterprise->id}}" data-toggle="modal" data-target="#alertDeleteCompany" class="deleteBtn"><i class="fa-solid fa-trash"></i></td>
+                        <td title="Delete shipment {{$enterprise->id}}" data-id="{{$enterprise->id}}" data-toggle="modal" data-target="#alertDeleteCompany" class="deleteEmpresaBtn"><i class="fa-solid fa-trash"></i></td>
+                        @endif
                     </tr>
                         @endforeach
                     </tbody>
@@ -38,7 +41,9 @@
                 <div class="d-flex justify-content-center mt-2">
                     {{ $enterprises->links() }}
                 </div>
-                <button type="submit" title="Add new enterprise" class="bg-dark text-white text- border-0 rounded w-100 mt-2 p-2" data-toggle="modal" data-target="#addCompany"><i class="fa-solid fa-plus"></i> Add new enterprise</button>
+                @if($coordinator)
+                <button type="submit" title="Add new enterprise" class="bg-dark text-white border-0 rounded w-100 mt-2 p-2" data-toggle="modal" data-target="#addCompany"><i class="fa-solid fa-plus"></i> Add new enterprise</button>
+                @endif
             </div>
         </div>
     </div>
@@ -146,7 +151,7 @@
 </div>
 
 <!-- Alert delete -->
-<div class="modal fade" id="alertDeleteCompany" tabindex="-1" role="dialog" aria-labelledby="alertDeleteCompany" aria-hidden="true">
+<div class="modal fade modal-sm" id="alertDeleteCompany" tabindex="-1" role="dialog" aria-labelledby="alertDeleteCompany" aria-hidden="true">
     <form method="POST" action="/empresa/delete/1" class="modal-dialog modal-dialog-centered" role="form" id="deleteForm">
         @csrf
         <div class="modal-content ">
@@ -156,9 +161,9 @@
                     <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
                 </button>
             </div>
-            <div class="d-flex flex-row">
-                <button type="submit" name="submit3" class="btn btn-danger w-50">Yes</button>
-                <button type="button" class="btn btn-secondary w-50" data-dismiss="modal">No</button>
+            <div class="modal-body text-center">
+                <button type="submit" name="submit3" class="btn btn-danger w-100 mb-1">Yes</button>
+                <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">No</button>
             </div>
         </div>
     </form>

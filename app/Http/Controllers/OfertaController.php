@@ -8,6 +8,7 @@ use App\Models\Enviaments;
 use App\Models\Estudis;
 use App\Models\Ofertas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class OfertaController extends Controller
@@ -31,7 +32,7 @@ class OfertaController extends Controller
             'correuContacte'=>$correuContacte
         ];
         Ofertas::create($data);
-        return Redirect::to('empresa/oferta');
+        return redirect()->back();
     }
     public function updateOferta($id, $descripcio, $numVacants, $curs, $nomContacte, $cognomContacte, $correuContacte){
 
@@ -50,5 +51,8 @@ class OfertaController extends Controller
         } else {
             return 'Offer not found';
         }
+    }
+    public function sendOffer($id){
+
     }
 }

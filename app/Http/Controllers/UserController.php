@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresas;
 use App\Models\Estudis;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -15,5 +17,14 @@ class UserController extends Controller
             ->whereIn('group', $groups)->paginate(5);
         $groupsInfo = Estudis::all();
         return view('users', compact('users', 'groupsInfo'));
+    }
+    public function fitxa(Request $request, $id){
+        $user = User::findOrFail($id);
+        $user -> name = $request->name;
+        $user -> email = $request->email;
+        $user -> coordinator = $request->coordinator === "on" ? 1 : 0;
+        $user -> group = $request->group;
+        $user -> save();
+        return redirect()->back();
     }
 }

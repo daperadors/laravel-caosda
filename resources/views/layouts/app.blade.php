@@ -38,13 +38,22 @@
                             <a class="nav-link" href="{{ route('students') }}">Students</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('empresa') }}">Companies</a>
+                            <a class="nav-link" href="{{ route('empresa') }}">Enterprises</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('oferta') }}">Offers</a>
+                            @if(\Illuminate\Support\Facades\Auth::check())
+                                @if(Auth::user()->coordinator === 1)
+                                    <a class="nav-link" href="{{ route('oferta') }}">Enterprise Offers</a>
+                                @endif
+
+                            @endif
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Estudis</a>
+                            <a class="nav-link" href="{{ route('tutor') }}">Tutor Offers</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('estudis') }}">Studies</a>
                         </li>
                     </ul>
 

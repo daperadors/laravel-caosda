@@ -29,7 +29,12 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                @if(count($shipments)<5)
+                    <p class="text-center text-secondary">No more data</p>
+                @endif
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                {{ $shipments->links() }}
             </div>
             </div>
         </div>

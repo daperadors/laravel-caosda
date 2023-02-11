@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,8 @@ class EmpresaController extends Controller
     public function index()
     {
         $enterprises = Empresas::select()->paginate(5);
-        return view('empresa', compact('enterprises'));
+        $coordinator = Auth::user()->coordinator === 1 ? true : false;
+        return view('empresa', compact('enterprises', 'coordinator'));
     }
     public function addEmpresaURL($nom, $adreça, $telefon, $correu)
     {
@@ -46,7 +48,7 @@ class EmpresaController extends Controller
         $empresa -> telefon = intval($request->mobile);
         $empresa -> correu = $request->email;
         $empresa -> save();
-        return Redirect::to('empresa');
+        return redirect()->back();
     }
     public function addEmpresa(Request $request)
     {
@@ -57,13 +59,13 @@ class EmpresaController extends Controller
         $empresa -> correu = $request->email;
         $empresa -> save();
 
-        return Redirect::to('empresa');
+        return redirect()->back();
     }
     public function deleteEmpresa($id){
         Schema::disableForeignKeyConstraints();
         $empresa = Empresas::findOrFail($id);
         $empresa->delete();
         Schema::enableForeignKeyConstraints();
-        return Redirect::to('empresa');
+        return redirect()->back();
     }
 }
