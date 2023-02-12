@@ -52,9 +52,9 @@
                 {{ $students->links() }}
             </div>
             <button type="submit" title="Add new student" class="bg-dark text-white text- border-0 rounded w-100 mt-2 p-2" data-toggle="modal" data-target="#addStudent"><i class="fa-solid fa-plus"></i> Add new student</button>
-            @if($message = Session::get('error'))
-                <div class="alert alert-danger mt-2" id="alert">
-                    <strong>Error</strong> {{$message = Session::get('error')}}
+            @if($message = Session::get('status'))
+                <div class="alert {{Session::get('status')}} mt-2" id="alert">
+                    <strong>Error</strong> {{$message = Session::get('value')}}
                 </div>
             @endif
         </div>
@@ -62,7 +62,7 @@
 </div>
 <!-- Add User -->
 <div class="modal fade modal-lg" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudent" aria-hidden="true">
-    <form method="POST" action="" class="modal-dialog modal-dialog-centered" role="form" id="addForm" enctype="multipart/form-data">
+    <form method="POST" action="{{route('addStudents')}}" class="modal-dialog modal-dialog-centered" role="form" id="addForm" enctype="multipart/form-data">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
@@ -74,51 +74,51 @@
             <div id="idUser" name="idUser" class="d-none"></div>
             <div class="modal-body">
                 <div class="row mb-3">
-                    <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
+                    <label for="nameAdd" class="col-md-4 col-form-label text-md-end">Name</label>
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" required>
+                        <input id="nameAdd" type="text" class="form-control" name="nameAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="surname" class="col-md-4 col-form-label text-md-end">Surname</label>
+                    <label for="surnameAdd" class="col-md-4 col-form-label text-md-end">Surname</label>
                     <div class="col-md-6">
-                        <input id="surname" type="text" class="form-control" name="surname" required>
+                        <input id="surnamesAdd" type="text" class="form-control" name="surnamesAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="email" class="col-md-4 col-form-label text-md-end">E-mail</label>
+                    <label for="emailAdd" class="col-md-4 col-form-label text-md-end">E-mail</label>
                     <div class="col-md-6">
-                        <input id="email" type="text" class="form-control" name="email" required>
+                        <input id="emailAdd" type="text" class="form-control" name="emailAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="dni" class="col-md-4 col-form-label text-md-end">DNI</label>
+                    <label for="dniAdd" class="col-md-4 col-form-label text-md-end">DNI</label>
                     <div class="col-md-6">
-                        <input id="dni" type="text" class="form-control" name="dni" required>
+                        <input id="dniAdd" type="text" class="form-control" name="dniAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="cours" class="col-md-4 col-form-label text-md-end">Cours</label>
+                    <label for="coursAdd" class="col-md-4 col-form-label text-md-end">Cours</label>
                     <div class="col-md-6">
-                        <input id="cours" type="text" class="form-control" name="cours">
+                        <input id="coursAdd" type="number" class="form-control" name="cursAdd">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="mobile" class="col-md-4 col-form-label text-md-end">Mobile</label>
+                    <label for="mobileAdd" class="col-md-4 col-form-label text-md-end">Mobile</label>
                     <div class="col-md-6">
-                        <input id="mobile" type="text" class="form-control" name="mobile" required>
+                        <input id="mobileAdd" type="number" class="form-control" name="mobileAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="group" class="col-md-4 col-form-label text-md-end">Group</label>
+                    <label for="groupAdd" class="col-md-4 col-form-label text-md-end">Group</label>
                     <div class="col-md-6">
-                        <select id="group" name="group" class="form-select" aria-label="Select your group">
+                        <select id="groupAdd" name="groupAdd" class="form-select" aria-label="Select your group">
                             <option selected disabled>Select your group</option>
                             @foreach($groupsInfo as $groupInfo)
                                 <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>
@@ -130,14 +130,14 @@
                 <div class="row mb-3">
                     <label for="curriculumAdd" class="col-md-4 col-form-label text-md-end">Curriculum</label>
                     <div class="col-md-6">
-                        <input id="curriculumAdd" type="file" class="form-control" name="curriculum" accept="application/pdf">
+                        <input id="curriculumAdd" type="file" class="form-control" name="curriculumAdd" accept="application/pdf">
                     </div>
                 </div>
 
                 <div class="row mb-3 d-flex align-items-center">
                     <label for="practiquesAddStudent" class="form-check-label col-md-4 col-form-label text-md-end">Practices</label>
                     <div class="form-check form-switch mx-3 col-md-6">
-                        <input class="form-check-input px-4 pt-4" type="checkbox" id="practiquesAddStudent" name="practiques">                    </div>
+                        <input class="form-check-input px-4 pt-4" type="checkbox" id="practiquesAddStudent" name="practiquesAdd">                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -214,7 +214,7 @@
                 <div class="row mb-3">
                     <label for="cursStudentEdit" class="col-md-4 col-form-label text-md-end">Curs</label>
                     <div class="col-md-6">
-                        <input id="cursStudentEdit" type="text" class="form-control border-0 shadow" name="cursEdit">
+                        <input id="cursStudentEdit" type="number" class="form-control border-0 shadow" name="cursEdit">
                     </div>
                 </div>
 

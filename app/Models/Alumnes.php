@@ -10,7 +10,7 @@ class Alumnes extends Model
     use HasFactory;
     protected $table = "alumnes";
     protected $primaryKey = "id";
-    protected $fillable = ["id", "nom", "cognoms", "dni", "curs", "telefon", "correu", "practiques", "cv"];
+    protected $fillable = ["id", "nom", "cognoms", "dni", "curs", "telefon", "correu", "practiques", "idEstudi", "cv"];
 
     /*public function tutors(){
         return $this->belongsTo(User::class);

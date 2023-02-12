@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class AlumnesController extends Controller
 {
@@ -52,22 +53,27 @@ class AlumnesController extends Controller
     }
 
     public function addStudent(Request $request){
-        $fileName = time().'.'.$request->curriculumAdd->getClientOriginalExtension();
-        $request->curriculumAdd->move(public_path('uploads'), $fileName);
 
+        if($request->curriculumAdd != null || $request->curriculumAdd != ""){
+            $fileName = time().'.'.$request->curriculumAdd->getClientOriginalExtension();
+            $request->curriculumAdd->move(public_path('uploads'), $fileName);
+        }
+        $curriculum = "";
+        if(!is_numeric($request->mobileAdd)) return redirect()->back()->with('status', "alert-danger")->with('value', "Unexpected error creating user");
+        if($request -> curriculumAdd != null) $curriculum =  $fileName;
         $data = [
             'nom'=>$request->nameAdd,
             'cognoms'=>$request->surnamesAdd,
             'dni'=>$request->dniAdd,
             'curs'=>$request->cursAdd,
-            'telefon'=>$request->telefonAdd,
-            'idEstudi'=>$request->nameAdd,
+            'telefon'=>$request->mobileAdd,
+            'idEstudi'=>intval($request->groupAdd),
             'correu'=>$request->emailAdd,
             'practiques'=>$request -> practiquesAdd === "on" ? 1 : 0,
-            'cv'=>($request -> curriculumEdit != null)? $request->cv =  $fileName : ""
+            'cv'=> $curriculum
         ];
         Alumnes::create($data);
-        return "Alumno añadido correctamente";
+        return redirect()->back()->with('status', "alert-success")->with('value', "User ".$request->nameAdd." created.");
     }
     public function deleteAlumne($id){
         Schema::disableForeignKeyConstraints();
@@ -91,7 +97,8 @@ class AlumnesController extends Controller
         $header = array(
             'Content-Type: application/pdf',
         );
-        if($student -> cv==null || $student -> cv=="") return redirect()->back()->with('error', 'File not found.');
+        $fileExists = public_path().'\uploads\\'.$student -> cv;
+        if($student -> cv==null || $student -> cv=="" || !is_file($fileExists)) return redirect()->back()->with('status', "alert-danger")->with('value', "File not found");
         return response()->download($pathToFile, $student -> cv, $header);
         //return down
         //return Response::download($file);

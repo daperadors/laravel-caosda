@@ -31,30 +31,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students') }}">Students</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('empresa') }}">Enterprises</a>
-                        </li>
-                        <li class="nav-item">
-                            @if(\Illuminate\Support\Facades\Auth::check())
-                                @if(Auth::user()->coordinator === 1)
-                                    <a class="nav-link" href="{{ route('oferta') }}">Enterprise Offers</a>
+                        @if(Auth::check())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users') }}">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('students') }}">Students</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('empresa') }}">Enterprises</a>
+                            </li>
+                            <li class="nav-item">
+                                @if(\Illuminate\Support\Facades\Auth::check())
+                                    @if(Auth::user()->coordinator === 1)
+                                        <a class="nav-link" href="{{ route('oferta') }}">Enterprise Offers</a>
+                                    @endif
+
                                 @endif
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tutor') }}">Tutor Offers</a>
+                            </li>
 
-                            @endif
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tutor') }}">Tutor Offers</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('estudis') }}">Studies</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('estudis') }}">Studies</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

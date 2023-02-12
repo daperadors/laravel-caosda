@@ -37,6 +37,8 @@ Route::middleware(["auth"])->group(function (){
     Route::get('/getAllOfertas',[InjectionController::class,'getAllOfertas']);
     Route::get('/getAllUsers',[InjectionController::class,'getAllUsers']);
     Route::get('/students', [\App\Http\Controllers\AlumnesController::class, 'index'])->name('students');
+    Route::post('/students/add', [\App\Http\Controllers\AlumnesController::class, 'addStudent'])->name('addStudents');
+
     Route::post('/fitxa/{id}', [App\Http\Controllers\UserController::class, 'fitxa'])->name('fitxa');
 
     Route::get('/studies', [\App\Http\Controllers\EstudisController::class, 'index'])->name('estudis');

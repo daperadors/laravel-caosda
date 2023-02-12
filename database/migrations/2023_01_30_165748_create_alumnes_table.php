@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nom', 30);
             $table->string('cognoms', 50);
             $table->string('dni', 9);
-            $table->string('curs', 20);
+            $table->integer('curs', false, date('Y'));
             $table->bigInteger('telefon', false);
             $table->string('correu', 50);
             //$table->foreignId('idTutor')->nullable()->constrained('users')->references('id');
