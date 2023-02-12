@@ -28,5 +28,9 @@ class EstudisSeeder extends Seeder
             'nom' => 'ASIX',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('estudis')->insert([
+            'nom' => 'DAMVI',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

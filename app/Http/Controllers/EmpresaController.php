@@ -27,7 +27,7 @@ class EmpresaController extends Controller
         $empresa -> save();
         //$auxempresa = Empresas::findOrFall($empresa->id);
         //return $empresa -> toJSON();
-        return Redirect::to('empresa');
+        return redirect() -> back();
     }
 
     public function setEmpresa($id, $nom, $adreça, $telefon, $correu)

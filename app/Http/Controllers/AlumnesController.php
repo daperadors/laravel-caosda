@@ -59,15 +59,17 @@ class AlumnesController extends Controller
             $request->curriculumAdd->move(public_path('uploads'), $fileName);
         }
         $curriculum = "";
-        if(!is_numeric($request->mobileAdd) || is_null($request->groupAdd) || $request->groupAdd == "") return redirect()->back()->with('status', "alert-danger")->with('value', "Unexpected error creating user");
+        if(!is_numeric($request->mobileAdd)) return redirect()->back()->with('status', "alert-danger")->with('value', "Unexpected error creating user");
         if($request -> curriculumAdd != null) $curriculum =  $fileName;
+        $estudi = intval($request->groupAdd);
+        if($request->groupAdd==null || $request->groupAdd=="" || $request->groupAdd == 0) $estudi = Auth::user()->group;
         $data = [
             'nom'=>$request->nameAdd,
             'cognoms'=>$request->surnamesAdd,
             'dni'=>$request->dniAdd,
             'curs'=>$request->cursAdd,
             'telefon'=>$request->mobileAdd,
-            'idEstudi'=>intval($request->groupAdd),
+            'idEstudi'=>$estudi,
             'correu'=>$request->emailAdd,
             'practiques'=>$request -> practiquesAdd === "on" ? 1 : 0,
             'cv'=> $curriculum

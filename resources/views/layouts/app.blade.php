@@ -32,9 +32,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @if(Auth::check())
+                            @if(Auth::user()->coordinator===1)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users') }}">Users</a>
                             </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('students') }}">Students</a>
                             </li>

@@ -112,7 +112,7 @@
                     <div class="row mb-3">
                         <label for="vacantsOfferEdit" class="col-md-4 col-form-label text-md-end">Vacants</label>
                         <div class="col-md-6">
-                            <input id="vacantsOfferEdit" type="text" class="form-control border-0 shadow" name="vacants">
+                            <input id="vacantsOfferEdit" type="number" class="form-control border-0 shadow" name="vacants">
                         </div>
                     </div>
 
@@ -161,7 +161,7 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editOfferTitle"></h5>
+                    <h5 class="modal-title" id="editOfferTitle">Add new offer</h5>
                     <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
                     </button>
@@ -169,7 +169,7 @@
                 <div id="idAddOffer" name="idAddOffer" class="d-none"></div>
                 <div class="modal-body">
                     <div class="row mb-3">
-                        <label for="empresaOfferAdd" class="col-md-4 col-form-label text-md-end">Group</label>
+                        <label for="empresaOfferAdd" class="col-md-4 col-form-label text-md-end">Enterprises</label>
                         <div class="col-md-6">
                             <select id="empresaOfferAdd" name="empresa" class="form-select" aria-label="Select the enterprise">
                                 <option selected disabled>Select enterprise</option>
@@ -202,7 +202,7 @@
                     <div class="row mb-3">
                         <label for="vacantsOfferAdd" class="col-md-4 col-form-label text-md-end">Vacants</label>
                         <div class="col-md-6">
-                            <input id="vacantsOfferAdd" type="number" class="form-control border-0 shadow" name="vacants">
+                            <input id="vacantsOfferAdd" type="number" min="0" class="form-control border-0 shadow" name="vacants">
                         </div>
                     </div>
 

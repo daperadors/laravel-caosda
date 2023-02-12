@@ -65,10 +65,10 @@
                             <div class="col-md-6 d-flex">
                                 <select id="group" name="grp" class="form-select" aria-label="Select your group" required>
                                     <option selected disabled>Select your group</option>
+                                    <option value="1">DAM/DAMVI</option>
                                     <option value="2">SMX</option>
                                     <option value="3">ASIX</option>
-                                    <option value="4">DAM</option>
-                                    <option value="1">DAM-VI</option>
+                                    <option value="4">DAM-VI</option>
                                 </select>
                                 @error('grp')
                                 <span class="invalid-feedback" role="alert">

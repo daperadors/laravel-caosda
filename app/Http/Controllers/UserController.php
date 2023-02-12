@@ -6,6 +6,7 @@ use App\Models\Empresas;
 use App\Models\Estudis;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -25,6 +26,7 @@ class UserController extends Controller
         $user -> coordinator = $request->coordinator === "on" ? 1 : 0;
         $user -> group = $request->group;
         $user -> save();
-        return redirect()->back();
+        if(Auth::user()->coordinator===1) return redirect()->back();
+        return Redirect::to('empresa');
     }
 }
