@@ -17,7 +17,7 @@ class EstudisSeeder extends Seeder
     public function run()
     {
         DB::table('estudis')->insert([
-           'nom' => 'DAMVI',
+           'nom' => 'DAM/DAMVI',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('estudis')->insert([
@@ -26,10 +26,6 @@ class EstudisSeeder extends Seeder
         ]);
         DB::table('estudis')->insert([
             'nom' => 'ASIX',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('estudis')->insert([
-            'nom' => 'DAM',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }

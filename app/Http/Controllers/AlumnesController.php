@@ -49,7 +49,7 @@ class AlumnesController extends Controller
         if($request -> curriculumEdit != null) $record->cv =  $fileName;
         $record->practiques = $request -> practiquesEdit === "on" ? 1 : 0;
         $record->save();
-        return redirect()->back();
+        return redirect()->back()->with('status', "alert-success")->with('value', "User ".$request -> nameEdit." updated.");
     }
 
     public function addStudent(Request $request){
@@ -59,7 +59,7 @@ class AlumnesController extends Controller
             $request->curriculumAdd->move(public_path('uploads'), $fileName);
         }
         $curriculum = "";
-        if(!is_numeric($request->mobileAdd)) return redirect()->back()->with('status', "alert-danger")->with('value', "Unexpected error creating user");
+        if(!is_numeric($request->mobileAdd) || is_null($request->groupAdd) || $request->groupAdd == "") return redirect()->back()->with('status', "alert-danger")->with('value', "Unexpected error creating user");
         if($request -> curriculumAdd != null) $curriculum =  $fileName;
         $data = [
             'nom'=>$request->nameAdd,
@@ -80,7 +80,7 @@ class AlumnesController extends Controller
         $alumne = Alumnes::findOrFail($id);
         $alumne->delete();
         Schema::enableForeignKeyConstraints();
-        return Redirect::to('students');
+        return Redirect::to('students')->with('status', "alert-warning")->with('value', "User ".$alumne -> nom." deleted.");
     }
 
     public function UdpdateCV(Request $request, $id) {
@@ -108,14 +108,14 @@ class AlumnesController extends Controller
 
 
     public function index(){
-        $groupsInfo = Estudis::all();
         if(Auth::user()->coordinator === 1){
+            $groupsInfo = Estudis::all();
             $groups = Estudis::where('id' ,'>' ,0)->pluck('id')->toArray();
             $students= Alumnes::addSelect(['groupname' => Estudis::select('nom') -> whereColumn('id', 'alumnes.idEstudi')])
                 ->whereIn('idEstudi', $groups)->paginate(5);
             return view('students', compact('students', 'groupsInfo'));
         }
-
+        $groupsInfo = Estudis::where('id' ,'=' ,Auth::user()->group)->get();
         $groups = Estudis::where('id' ,'=' ,Auth::user()->group)->pluck('id')->toArray();
         $students= Alumnes::addSelect(['groupname' => Estudis::select('nom') -> whereColumn('id', 'alumnes.idEstudi')])
             ->whereIn('idEstudi', $groups)->paginate(5);

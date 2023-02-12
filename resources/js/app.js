@@ -30,11 +30,13 @@ $(document).ready(function() {
         $('#editUserForm').attr('action', '/fitxa/'+parseInt(id));
 
     });
+
+    //OFERTAS
     $('.sendOfferBtn').click(function (){
         let { descripcio, id, numVacants } = jQuery.parseJSON($(this).attr("data-offer"));
         $('#offer').val(descripcio);
         $('#sendOfferTitle').text("Send offer "+descripcio);
-        $('#editForm').attr('action', '/empresa/tutor/oferta/'+parseInt(id)+"/"+parseInt(numVacants));
+        $('#editForm').attr('action', '/oferta/tutor/'+parseInt(id));
     })
 
     //STUDENTS
@@ -76,18 +78,64 @@ $(document).ready(function() {
         $(this).find('.downloadCvBtn').get(0).click();
     });
 
+    //OFFERTS
+    $('.deleteOfferBtn').click(function (){
+        let id = $(this).attr("data-id");
+        console.log(id)
+        $('#deleteOfferForm').attr('action', '/empresa/oferta/delete/'+parseInt(id));
+    });
+
+    $('.editOfferBtn2').off().click(function (){
+        let {id, descripcio, numVacants, idEstudi, curs, nomContacte, cognomContacte, correuContacte} = jQuery.parseJSON($(this).attr('data-table'));
+        //Set data into inputs
+        $('#editOfferTitle').text("Edit Offer "+ descripcio);
+        $('#idEditOffer').text(id);
+        $('#descripcioOfferEdit').val(descripcio);
+        $('#vacantsOfferEdit').val(numVacants);
+        $('#groupOfferEdit').val(idEstudi).change();
+        $('#cursOfferEdit').val(curs);
+        $('#nomContacteEditOffer').val(nomContacte);
+        $('#cognomContacteEditOffer').val(cognomContacte);
+        $('#correuContacteEditOffer').val(correuContacte);
+
+        $('#editOfferForm').attr('action', '/empresa/oferta/update/'+id);
+    });
+
+    //ENVIAMENTS
+
+    $('.updateStateEnviamentBtn').off().click(function (){
+        let {id, estatEnviaments, alumne, oferta} = jQuery.parseJSON($(this).attr('data-table'));
+        //Set data into inputs
+        $('#idEnviament').text(id);
+        $('#enviament').val(alumne+" - "+oferta);
+
+        $('#editOfferForm').attr('action', '/enviament/state/update/'+id);
+    });
+
+    $('#filter-by-year').click(function (){
+        $('#submitFilterByYear').get(0).click();
+    });
+    $('#filter-by-vacancies').click(function (){
+        $('#submitFilterByVacancies').get(0).click();
+    });
+    $('#filter-by-cycle').click(function (){
+        $('#submitFilterByCycle').get(0).click();
+    });
+
     fadeOutEffect('alert', 300);
     function fadeOutEffect(id, second) {
         var fadeTarget = document.getElementById(id);
-        var fadeEffect = setInterval(function () {
-            if (!fadeTarget.style.opacity) {
-                fadeTarget.style.opacity = 1;
-            }
-            if (fadeTarget.style.opacity > 0) {
-                fadeTarget.style.opacity -= 0.1;
-            } else {
-                clearInterval(fadeEffect);
-            }
-        }, second);
+        if(fadeTarget.style!=null){
+            var fadeEffect = setInterval(function () {
+                if (!fadeTarget.style.opacity) {
+                    fadeTarget.style.opacity = 1;
+                }
+                if (fadeTarget.style.opacity > 0) {
+                    fadeTarget.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                }
+            }, second);
+        }
     }
 });

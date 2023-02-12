@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumnes;
 use App\Models\Enviaments;
 use App\Models\Ofertas;
+use http\Env;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,10 +30,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $statesShipment = ['No Conveni', 'Finalitzat i Contractat', 'Enviament i retorna la plaça a la oferta'];
         $alumns = Alumnes::where('id' ,'>' ,0)->pluck('id')->all();
         $shipments = Enviaments::addSelect(['alumne' => Alumnes::select('nom') -> whereColumn('id', 'enviaments.alumne_id')])
                                 ->addSelect(['oferta' => Ofertas::select('descripcio') -> whereColumn('id', 'enviaments.oferta_id')])
                                 ->whereIn('alumne_id', $alumns)->where('estatEnviaments', '!=', 'Finalitzat i Contractat')->paginate(5);
-        return view('home', compact('shipments', 'alumns'));
+        return view('home', compact('shipments', 'alumns','statesShipment'));
+    }
+
+    public function udpateState(Request $request, $id) {
+
+        $enviament = Enviaments::findOrFail($id);
+
+        $enviament->estatEnviaments = $request -> stateOffer;
+        $enviament->save();
+        return redirect()->back();
+
     }
 }

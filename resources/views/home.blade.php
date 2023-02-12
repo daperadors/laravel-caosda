@@ -23,7 +23,7 @@
                         <td>{{$ship->oferta}}</td>
                         <td>{{$ship->observacions}}</td>
                         <td>{{$ship->estatEnviaments}}</td>
-                        <td title="Edit shipment {{$ship->id}}"><i class="fa-solid fa-pen-to-square"></i></td>
+                        <td title="Edit shipment {{$ship->id}}" data-table="{{$ship}}" data-toggle="modal" data-target="#updateStateEnviament" class="updateStateEnviamentBtn"><i class="fa-solid fa-pen-to-square"></i></td>
                         <td title="Delete shipment {{$ship->id}}"><i class="fa-solid fa-trash"></i></td>
                     </tr>
                         @endforeach
@@ -39,6 +39,48 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Update State -->
+<div class="modal fade" id="updateStateEnviament" tabindex="-1" role="dialog" aria-labelledby="updateStateEnviament" aria-hidden="true">
+    <form method="POST" action="/enviament/state/update/1" class="modal-dialog modal-dialog-centered" role="form" id="editForm">
+        @csrf
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateStateEnviamentTitle">Change shipment state</h5>
+                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                </button>
+            </div>
+            <div id="idEnviament" name="idEnviament" class="d-none"></div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <label for="enviament" class="col-md-4 col-form-label text-md-end">Enviament</label>
+                    <div class="col-md-6">
+                        <input id="enviament" type="text" class="form-control border-0 shadow" name="enviament" disabled>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="stateOffer" class="col-md-4 col-form-label text-md-end">Estados</label>
+                    <div class="col-md-6">
+                        <select id="stateOffer" name="stateOffer" class="form-select form-control border-0 shadow" aria-label="Select the user for send this offer">
+                            <option selected disabled>Select the state</option>
+                            @foreach($statesShipment as $stateship)
+                                <option value="{{$stateship}}">{{$stateship}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="submit" class="btn btn-dark">Save changes</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 @endsection

@@ -54,7 +54,7 @@
             <button type="submit" title="Add new student" class="bg-dark text-white text- border-0 rounded w-100 mt-2 p-2" data-toggle="modal" data-target="#addStudent"><i class="fa-solid fa-plus"></i> Add new student</button>
             @if($message = Session::get('status'))
                 <div class="alert {{Session::get('status')}} mt-2" id="alert">
-                    <strong>Error</strong> {{$message = Session::get('value')}}
+                    <strong>Yep!</strong> {{$message = Session::get('value')}}
                 </div>
             @endif
         </div>
@@ -119,7 +119,7 @@
                     <label for="groupAdd" class="col-md-4 col-form-label text-md-end">Group</label>
                     <div class="col-md-6">
                         <select id="groupAdd" name="groupAdd" class="form-select" aria-label="Select your group">
-                            <option selected disabled>Select your group</option>
+                            <option selected disabled>Group selector</option>
                             @foreach($groupsInfo as $groupInfo)
                                 <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>
                             @endforeach
@@ -229,7 +229,7 @@
                     <label for="groupEdit" class="col-md-4 col-form-label text-md-end">Group</label>
                     <div class="col-md-6">
                         <select id="groupEdit" name="groupEdit" class="form-select" aria-label="Select your group">
-                            <option selected disabled>Select your group</option>
+                            <option selected disabled>Group selector</option>
                             @foreach($groupsInfo as $groupInfo)
                                 <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>
                             @endforeach

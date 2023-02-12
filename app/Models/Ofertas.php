@@ -10,7 +10,7 @@ class Ofertas extends Model
     use HasFactory;
     protected $table = 'ofertas';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'descripcio','numVacants','curs','nomContacte','cognomContacte','correuContacte'];
+    protected $fillable = ['id', 'descripcio','numVacants','curs','nomContacte','cognomContacte','idEmpresa', 'idEstudi','correuContacte'];
 
     public function empresa() {
         return $this->belongsTo(Empresas::class, 'idEmpresa', 'id');

@@ -21,13 +21,14 @@ Auth::routes();
 
 Route::middleware(["auth"])->group(function (){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/enviament/state/update/{id}', [App\Http\Controllers\HomeController::class, 'udpateState'])->name('udpateState');
 
     Route::get('/empresa', [App\Http\Controllers\EmpresaController::class, 'index'])->name('empresa');
 
     //STUDENTS
     Route::post('/students/delete/{id}',[\App\Http\Controllers\AlumnesController::class, 'deleteAlumne'])->name('deleteAlumne');
     Route::post('/students/update/{id}',[\App\Http\Controllers\AlumnesController::class, 'updateAlumnes'])->name('updateAlumnes');
-    Route::post('/students/update/CV/{id}',[\App\Http\Controllers\AlumnesController::class, 'UdpdateCV'])->name('UdpdateCV');
+    //Route::post('/students/update/CV/{id}',[\App\Http\Controllers\AlumnesController::class, 'UdpdateCV'])->name('UdpdateCV');
     Route::post('/students/curriculum/download/{id}',[\App\Http\Controllers\AlumnesController::class, 'ViewCV'])->name('ViewCV');
 
     Route::get('/getAllAlumnes',[InjectionController::class,'getAllAlumnes']);
@@ -43,13 +44,22 @@ Route::middleware(["auth"])->group(function (){
 
     Route::get('/studies', [\App\Http\Controllers\EstudisController::class, 'index'])->name('estudis');
     Route::get('/oferta/tutor', [\App\Http\Controllers\TutorController::class, 'index'])->name('tutor');
+    Route::post('/oferta/tutor/{id}', [\App\Http\Controllers\TutorController::class, 'sendOffer'])->name('sendOffer');
+    Route::get('/oferta/tutor/filter-by-year', [\App\Http\Controllers\TutorController::class, 'filterByYear'])->name('filter-by-year');
+    Route::get('/oferta/tutor/filter-by-vacancies', [\App\Http\Controllers\TutorController::class, 'filterByVacancies'])->name('filter-by-vacancies');
+
+
+
 });
 
 Route::middleware(["auth", "coordinator.routes"])->group(function (){
     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
 
     Route::get('/empresa/oferta',[OfertaController::class,'index'])->name('oferta');
-    Route::get('/empresa/oferta/add/{idempresa}',[OfertaController::class,'addNewCompany']);
+    Route::post('/empresa/oferta/add/{idempresa}',[OfertaController::class,'addNewCompany']);
+    Route::get('/empresa/oferta/delete/{id}',[OfertaController::class,'deleteOffer'])->name('deleteOffer');
+    Route::post('/empresa/oferta/update/{id}',[OfertaController::class,'updateOferta'])->name('updateOferta');
+    Route::post('/empresa/oferta/add',[OfertaController::class,'addOferta'])->name('addOferta');
 
     Route::get('/empresa/add/{nom}/{adreça}/{telefon}/{correu}',[EmpresaController::class,'addEmpresaURL']);
     Route::get('/empresa/edit/{id}/{nom}/{adreça}/{telefon}/{correu}',[EmpresaController::class, 'setEmpresa']);
