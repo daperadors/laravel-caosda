@@ -76,49 +76,49 @@
                 <div class="row mb-3">
                     <label for="nameAdd" class="col-md-4 col-form-label text-md-end">Name</label>
                     <div class="col-md-6">
-                        <input id="nameAdd" type="text" class="form-control" name="nameAdd" required>
+                        <input id="nameAdd" type="text" class="form-control border-0 shadow" name="nameAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="surnameAdd" class="col-md-4 col-form-label text-md-end">Surname</label>
                     <div class="col-md-6">
-                        <input id="surnamesAdd" type="text" class="form-control" name="surnamesAdd" required>
+                        <input id="surnamesAdd" type="text" class="form-control border-0 shadow" name="surnamesAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="emailAdd" class="col-md-4 col-form-label text-md-end">E-mail</label>
                     <div class="col-md-6">
-                        <input id="emailAdd" type="text" class="form-control" name="emailAdd" required>
+                        <input id="emailAdd" type="text" class="form-control border-0 shadow" name="emailAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="dniAdd" class="col-md-4 col-form-label text-md-end">DNI</label>
                     <div class="col-md-6">
-                        <input id="dniAdd" type="text" class="form-control" name="dniAdd" required>
+                        <input id="dniAdd" type="text" class="form-control border-0 shadow" name="dniAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="coursAdd" class="col-md-4 col-form-label text-md-end">Cours</label>
                     <div class="col-md-6">
-                        <input id="coursAdd" type="number" class="form-control" name="cursAdd">
+                        <input id="coursAdd" type="number" class="form-control border-0 shadow" name="cursAdd">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="mobileAdd" class="col-md-4 col-form-label text-md-end">Mobile</label>
                     <div class="col-md-6">
-                        <input id="mobileAdd" type="number" class="form-control" name="mobileAdd" required>
+                        <input id="mobileAdd" type="number" class="form-control border-0 shadow" name="mobileAdd" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="groupAdd" class="col-md-4 col-form-label text-md-end">Group</label>
                     <div class="col-md-6">
-                        <select id="groupAdd" name="groupAdd" class="form-select" aria-label="Select your group">
+                        <select id="groupAdd" name="groupAdd" class="form-select border-0 shadow" aria-label="Select your group">
                             <option selected disabled>Group selector</option>
                             @foreach($groupsInfo as $groupInfo)
                                 <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>
@@ -130,7 +130,7 @@
                 <div class="row mb-3">
                     <label for="curriculumAdd" class="col-md-4 col-form-label text-md-end">Curriculum</label>
                     <div class="col-md-6">
-                        <input id="curriculumAdd" type="file" class="form-control" name="curriculumAdd" accept="application/pdf">
+                        <input id="curriculumAdd" type="file" class="form-control border-0 shadow" name="curriculumAdd" accept="application/pdf">
                     </div>
                 </div>
 
@@ -228,7 +228,7 @@
                 <div class="row mb-3">
                     <label for="groupEdit" class="col-md-4 col-form-label text-md-end">Group</label>
                     <div class="col-md-6">
-                        <select id="groupEdit" name="groupEdit" class="form-select" aria-label="Select your group">
+                        <select id="groupEdit" name="groupEdit" class="form-select border-0 shadow" aria-label="Select your group">
                             <option selected disabled>Group selector</option>
                             @foreach($groupsInfo as $groupInfo)
                                 <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>

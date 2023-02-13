@@ -20,7 +20,7 @@
                         <tr>
                             <td>{{$user->name}}</td>
                             <td title="Edit shipment {{$user->name}}" data-user="{{$user}}" data-toggle="modal" data-target="#viewUser" id="btnUser" class="viewUser"><i class="fa-solid fa-eye"></i></td>
-                            <td title="Delete user {{$user->name}}"><i class="fa-solid fa-trash"></i></td>
+                            <td title="Delete user {{$user->name}}"  data-table="{{$user}}" data-toggle="modal" data-target="#alertDeleteUser" class="deleteUserBtn"><i class="fa-solid fa-trash"></i></td>
                         </tr>
                             @endforeach
                         </tbody>
@@ -32,6 +32,11 @@
                 <div class="d-flex justify-content-center mt-2">
                     {{ $users->links() }}
                 </div>
+                @if($message = Session::get('status'))
+                    <div class="alert {{Session::get('status')}} mt-2" id="alert">
+                        <strong>Yep!</strong> {{$message = Session::get('value')}}
+                    </div>
+                @endif
                 </div>
             </div>
         </div>
@@ -70,8 +75,8 @@
                          </div>
                          <div class="row mb-2 d-flex align-items-center">
                              <label for="coordinator" class="form-check-label col-md-4 col-form-label text-md-end">{{ __('Coordinator') }}</label>
-                             <div class="form-check form-switch col-md-6">
-                                 <input class="form-check-input" type="checkbox" id="coordinator" name="coordinator">
+                             <div class="form-check form-switch mx-3 col-md-6">
+                                 <input class="form-check-input px-4 pt-4"" type="checkbox" id="coordinator" name="coordinator">
                              </div>
                          </div>
                          <div class="row mb-2">
@@ -92,6 +97,24 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" name="submit" class="btn btn-dark">Save changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--Delete User-->
+<div class="modal fade modal-sm" id="alertDeleteUser" tabindex="-1" role="dialog" aria-labelledby="alertDeleteStudent" aria-hidden="true">
+    <form method="POST" action="" class="modal-dialog modal-dialog-centered" role="form" id="deleteUserForm">
+        @csrf
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTitle">Are you sure you want to delete it?</h5>
+                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <button type="submit" name="submit3" class="btn btn-danger w-100 mb-1">Yes</button>
+                <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">No</button>
             </div>
         </div>
     </form>

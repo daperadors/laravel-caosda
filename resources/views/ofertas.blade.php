@@ -77,7 +77,7 @@
 
 
     <!-- Edit -->
-    <div class="modal fade" id="editOffer" tabindex="-1" role="dialog" aria-labelledby="editOffer" aria-hidden="true">
+    <div class="modal fade modal-lg" id="editOffer" tabindex="-1" role="dialog" aria-labelledby="editOffer" aria-hidden="true">
         <form method="POST" action="/empresa/oferta/update/1" class="modal-dialog modal-dialog-centered" role="form" id="editOfferForm">
             @csrf
             <div class="modal-content">
@@ -171,7 +171,7 @@
                     <div class="row mb-3">
                         <label for="empresaOfferAdd" class="col-md-4 col-form-label text-md-end">Enterprises</label>
                         <div class="col-md-6">
-                            <select id="empresaOfferAdd" name="empresa" class="form-select" aria-label="Select the enterprise">
+                            <select id="empresaOfferAdd" name="empresa" class="form-select border-0 shadow" aria-label="Select the enterprise">
                                 <option selected disabled>Select enterprise</option>
                                 @foreach($enterprisesInfo as $enterpriseInfo)
                                     <option value="{{$enterpriseInfo->id}}">{{$enterpriseInfo->nom}}</option>
@@ -190,7 +190,7 @@
                     <div class="row mb-3">
                         <label for="groupOfferEdit" class="col-md-4 col-form-label text-md-end">Group</label>
                         <div class="col-md-6">
-                            <select id="groupOfferAdd" name="group" class="form-select" aria-label="Select your group">
+                            <select id="groupOfferAdd" name="group" class="form-select border-0 shadow" aria-label="Select your group">
                                 <option selected disabled>Select the group</option>
                                 @foreach($groupsInfo as $groupInfo)
                                     <option value="{{$groupInfo->id}}">{{$groupInfo->nom}}</option>
@@ -236,7 +236,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit2" class="btn btn-dark">Create new student</button>
+                    <button type="submit" name="submit2" class="btn btn-dark">Create new enterprise</button>
                 </div>
             </div>
         </form>

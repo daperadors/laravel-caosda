@@ -56,8 +56,12 @@
                         <td>{{$offer->cognomContacte}}</td>
                         <td>{{$offer->correuContacte}}</td>
                         @if($offer->numVacants>0)
-                            <td title="Send offer {{$offer->descripcio}}" data-offer="{{$offer}}" data-toggle="modal" data-target="#sendOffer" id="btnSendOffer" class="sendOfferBtn"><i class="fa-solid fa-share-from-square"></i></td>
+                            <td title="Assign offer {{$offer->descripcio}}" data-offer="{{$offer}}" data-toggle="modal" data-target="#sendOffer" id="btnSendOffer" class="sendOfferBtn"><i class="fa-solid fa-share-from-square"></i></td>
+                        <form method="GET" action="/send/mail/{{$offer->id}}" role="form">
+                            <td title="Send mail offer {{$offer->descripcio}}" class="sendEmail"><button type="submit" name="submit2" class="btn btn-dark d-none sendEmailBtn"></button><i class="fa-solid fa-paper-plane"></i></td>
+                        </form>
                         @else
+                            <td></td>
                             <td></td>
                         @endif
                     </tr>
@@ -72,6 +76,11 @@
             <div class="d-flex justify-content-center mt-2">
                 {{ $offers->links() }}
             </div>
+            @if($message = Session::get('status'))
+                <div class="alert {{Session::get('status')}} mt-2" id="alert">
+                    <strong>Yep!</strong> {{$message = Session::get('value')}}
+                </div>
+            @endif
          </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Schema;
 
 class UserController extends Controller
 {
@@ -26,7 +27,14 @@ class UserController extends Controller
         $user -> coordinator = $request->coordinator === "on" ? 1 : 0;
         $user -> group = $request->group;
         $user -> save();
-        if(Auth::user()->coordinator===1) return redirect()->back();
-        return Redirect::to('empresa');
+        if($request->coordinator === "on") return redirect()->back();
+        return Redirect::to('/');
+    }
+    public function deleteUser($id){
+        Schema::disableForeignKeyConstraints();
+        $user = User::findOrFail($id);
+        $user->delete();
+        Schema::enableForeignKeyConstraints();
+        return redirect()->back()->with('status', "alert-warning")->with('value', "User ".$user -> name." deleted.");
     }
 }

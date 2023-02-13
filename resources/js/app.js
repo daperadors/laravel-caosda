@@ -108,8 +108,9 @@ $(document).ready(function() {
         //Set data into inputs
         $('#idEnviament').text(id);
         $('#enviament').val(alumne+" - "+oferta);
+        $('#stateOffer').val(estatEnviaments).change();
 
-        $('#editOfferForm').attr('action', '/enviament/state/update/'+id);
+        $('#editShipmentForm').attr('action', '/enviament/state/update/'+id);
     });
 
     $('#filter-by-year').click(function (){
@@ -121,7 +122,13 @@ $(document).ready(function() {
     $('#filter-by-cycle').click(function (){
         $('#submitFilterByCycle').get(0).click();
     });
-
+    $('.deleteUserBtn').click(function (){
+        let {id} = jQuery.parseJSON($(this).attr('data-table'));
+        $('#deleteUserForm').attr('action', '/users/delete/'+id);
+    });
+    $('.sendEmail').click(function(){
+        $(this).find('.sendEmailBtn').get(0).click()
+    });
     fadeOutEffect('alert', 300);
     function fadeOutEffect(id, second) {
         var fadeTarget = document.getElementById(id);

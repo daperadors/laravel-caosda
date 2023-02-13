@@ -44,6 +44,11 @@
                 @if($coordinator)
                 <button type="submit" title="Add new enterprise" class="bg-dark text-white border-0 rounded w-100 mt-2 p-2" data-toggle="modal" data-target="#addCompany"><i class="fa-solid fa-plus"></i> Add new enterprise</button>
                 @endif
+                @if($message = Session::get('status'))
+                    <div class="alert {{Session::get('status')}} mt-2" id="alert">
+                        <strong>Yep!</strong> {{$message = Session::get('value')}}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -116,35 +121,35 @@
                 <div class="row mb-3">
                     <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name">
+                        <input id="name" type="text" class="form-control border-0 shadow" name="name">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="email" class="col-md-4 col-form-label text-md-end">E-mail</label>
                     <div class="col-md-6">
-                        <input id="email" type="text" class="form-control" name="email">
+                        <input id="email" type="text" class="form-control border-0 shadow" name="email">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="address" class="col-md-4 col-form-label text-md-end">Address</label>
                     <div class="col-md-6">
-                        <input id="address" type="text" class="form-control" name="address">
+                        <input id="address" type="text" class="form-control border-0 shadow" name="address">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="mobile" class="col-md-4 col-form-label text-md-end">Mobile</label>
                     <div class="col-md-6">
-                        <input id="mobile" type="number" class="form-control" name="mobile">
+                        <input id="mobile" type="number" class="form-control border-0 shadow" name="mobile">
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submit2" class="btn btn-dark">Create new company</button>
+                <button type="submit" name="submit2" class="btn btn-dark">Create new enterprise</button>
             </div>
         </div>
     </form>

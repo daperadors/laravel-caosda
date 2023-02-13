@@ -21,7 +21,10 @@ Auth::routes();
 
 Route::middleware(["auth"])->group(function (){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::post('/enviament/state/update/{id}', [App\Http\Controllers\HomeController::class, 'udpateState'])->name('udpateState');
+    Route::get('/send/mail/{id}', [App\Http\Controllers\HomeController::class, 'sendEmail'])->name('sendEmail');
+
 
     Route::get('/empresa', [App\Http\Controllers\EmpresaController::class, 'index'])->name('empresa');
 
@@ -41,6 +44,8 @@ Route::middleware(["auth"])->group(function (){
     Route::post('/students/add', [\App\Http\Controllers\AlumnesController::class, 'addStudent'])->name('addStudents');
 
     Route::post('/fitxa/{id}', [App\Http\Controllers\UserController::class, 'fitxa'])->name('fitxa');
+    Route::post('/users/delete/{id}',[\App\Http\Controllers\UserController::class, 'deleteUser'])->name('userDelete');
+
 
     Route::get('/studies', [\App\Http\Controllers\EstudisController::class, 'index'])->name('estudis');
     Route::get('/oferta/tutor', [\App\Http\Controllers\TutorController::class, 'index'])->name('tutor');

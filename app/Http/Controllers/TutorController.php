@@ -68,10 +68,13 @@ class TutorController extends Controller
         return view('ofertas-tutor', compact('offers', 'studentsInfo'));
     }
 
-    public function sendOffer($id){
+    public function sendOffer(Request $request, $id){
         $oferta = Ofertas::findOrFail($id);
         $oferta -> numVacants =  $oferta -> numVacants -1;
         $oferta -> save();
+        $student = Alumnes::findOrFail($request->userToSend);
+        $student -> practiques = true;
+        $student -> save();
         return redirect()->back()->with('status', "alert-success")->with('value', "Vacancies changed.");
     }
 }

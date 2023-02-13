@@ -14,6 +14,7 @@
                         <th scope="col">Offers</th>
                         <th scope="col">Observations</th>
                         <th scope="col">Shipping status</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,7 +25,6 @@
                         <td>{{$ship->observacions}}</td>
                         <td>{{$ship->estatEnviaments}}</td>
                         <td title="Edit shipment {{$ship->id}}" data-table="{{$ship}}" data-toggle="modal" data-target="#updateStateEnviament" class="updateStateEnviamentBtn"><i class="fa-solid fa-pen-to-square"></i></td>
-                        <td title="Delete shipment {{$ship->id}}"><i class="fa-solid fa-trash"></i></td>
                     </tr>
                         @endforeach
                     </tbody>
@@ -36,6 +36,11 @@
             <div class="d-flex justify-content-center mt-2">
                 {{ $shipments->links() }}
             </div>
+            @if($message = Session::get('status'))
+                <div class="alert {{Session::get('status')}} mt-2" id="alert">
+                    <strong>Yep!</strong> {{$message = Session::get('value')}}
+                </div>
+            @endif
             </div>
         </div>
     </div>
@@ -43,7 +48,7 @@
 
 <!-- Update State -->
 <div class="modal fade" id="updateStateEnviament" tabindex="-1" role="dialog" aria-labelledby="updateStateEnviament" aria-hidden="true">
-    <form method="POST" action="/enviament/state/update/1" class="modal-dialog modal-dialog-centered" role="form" id="editForm">
+    <form method="POST" action="/enviament/state/update/1" class="modal-dialog modal-dialog-centered" role="form" id="editShipmentForm">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
@@ -82,5 +87,6 @@
         </div>
     </form>
 </div>
+
 
 @endsection
