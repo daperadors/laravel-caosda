@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class UserSeeder extends Seeder
             'name'=> 'david',
             'email'=> 'david@carpediem.net',
             'email_verified_at'=> null,
-            'password'=> '123456789',
+            'password'=> Hash::make('12345678'),
             'coordinator'=> true,
             'group' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -29,7 +30,7 @@ class UserSeeder extends Seeder
             'name'=> 'carlos',
             'email'=> 'carlos@carpediem.net',
             'email_verified_at'=> null,
-            'password'=> '123456789',
+            'password'=> Hash::make('12345678'),
             'coordinator'=> false,
             'group' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -38,7 +39,7 @@ class UserSeeder extends Seeder
             'name'=> 'oscar',
             'email'=> 'oscar@carpediem.net',
             'email_verified_at'=> null,
-            'password'=> '123456789',
+            'password'=> Hash::make('12345678'),
             'coordinator'=> false,
             'group' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
